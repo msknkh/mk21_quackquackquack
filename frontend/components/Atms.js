@@ -16,10 +16,10 @@ _renderContent = (atm) => {
 }
 
 _renderHeader = (atm, expanded) => {
-    let icon = `../assets/${atm.item.img}.png`
+    let icon = '../assets/ICICI.png';
     return (
         <View style={{ flexDirection: 'row', padding: 10, justifyContent: "space-between", alignItems: 'center' }}>
-            <Image style={{ height: 50, width: 50 }} source={require('../assets/ICICI.png')} />
+            <Image style={{ height: 50, width: 50 }} source={require(icon)} />
             <Text> {atm.item.bank_name} | {atm.item.distance} Km </Text>
             <MaterialIcons name="navigation" size={24} color="black" />
             {
@@ -42,7 +42,7 @@ renderAtm = (atm) => {
 
 RenderAtms = ({ atms }) => {
     return (
-        <FlatList data={atms} renderItem={renderAtm} />
+        <FlatList data={atms} renderItem={renderAtm}  keyExtractor={item => item.id.toString()} />
     );
 }
 
