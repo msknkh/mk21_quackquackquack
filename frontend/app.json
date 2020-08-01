@@ -10,8 +10,11 @@
       "resizeMode": "contain",
       "backgroundColor": "#302ea2"
     },
-    "androidStatusBar" :{
+    "androidStatusBar": {
       "hidden": true
+    },
+    "android": {
+      "softwareKeyboardLayoutMode": "pan"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

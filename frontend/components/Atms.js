@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Text, Accordion, Icon } from 'native-base';
-import { ActivityIndicator, View, StyleSheet, AppState, TouchableOpacity, FlatList, Image } from 'react-native';
+import { ActivityIndicator, View, StyleSheet, AppState, TouchableOpacity, FlatList, Image, KeyboardAvoidingView } from 'react-native';
 import { Foundation, AntDesign, MaterialIcons } from '@expo/vector-icons'
 import * as Location from 'expo-location';
 import * as IntentLauncher from 'expo-intent-launcher';
@@ -42,7 +42,7 @@ renderAtm = (atm) => {
 
 RenderAtms = ({ atms }) => {
     return (
-        <FlatList data={atms} renderItem={renderAtm}  keyExtractor={item => item.id.toString()} />
+        <FlatList data={atms} renderItem={renderAtm} keyExtractor={item => item.id.toString()} />
     );
 }
 
@@ -147,7 +147,7 @@ class Atms extends React.Component {
             let showingAtms
             if (this.state.search) {
                 const match = new RegExp(escapeRegExp(this.state.search), 'i')
-                showingAtms = atms.filter((atm) => match.test(atm.bank_name) && (atm.distance < this.state.sliderValue))
+                showingAtms = atms.filter((atm) => match.test(atm.bank_name) && (atm.distance <= this.state.sliderValue))
             }
             else {
                 showingAtms = atms.filter(atm => (atm.distance <= this.state.sliderValue))
