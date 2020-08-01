@@ -4,4 +4,5 @@
 1. Clone the Repo using git clone
 2. cd Repo
 3. cd frontend
-4. expo start
+4. npm install
+5. expo start
