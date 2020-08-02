@@ -113,7 +113,7 @@ export default class MainComponent extends React.Component {
                             headerTitle: 'Tutorial Videos',
                             headerRight: () => <HeaderHomeButton navigation={navigation} />
                         })} />
-                        <Stack.Screen name="Rate the FT" component={Feedback} options={({ navigation }) => ({
+                        <Stack.Screen name="Feedback" component={Feedback} options={({ navigation }) => ({
                             headerTitle: 'Rate your visit',
                             headerRight: () => <HeaderHomeButton navigation={navigation} />
                         })} />

@@ -53,9 +53,10 @@ class Renderbanks extends React.Component {
                 </View>
 
                 <View style={{ flex: 2.5, flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <TouchableOpacity style={{ flex: 1 }} onPress={() => {
-                        alert('Would you like to rate the bank?');
-                        _navigateMap(bank.item.lat, bank.item.long);
+                    <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
+                         this.props.self.props.navigation.navigate('Feedback', bank.item);
+                         _navigateMap(bank.item.lat, bank.item.long);
+
                     }}>
                         <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
                     </TouchableOpacity>
@@ -205,6 +206,8 @@ class Banks extends React.Component {
                 showingbanks = banks.filter(bank => (bank.distance <= this.state.sliderValue))
             }
 
+            self = this;
+
             return (
                 <Container>
                     <View style={{ flex: 1 }}>
@@ -223,7 +226,7 @@ class Banks extends React.Component {
                             {
                                 showingbanks.length > 0 ?
                                     <View>
-                                        <Renderbanks banks={showingbanks} />
+                                        <Renderbanks banks={showingbanks} self = {self}/>
                                     </View>
                                     :
                                     <View style={styles.center}>

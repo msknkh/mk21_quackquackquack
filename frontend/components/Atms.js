@@ -14,6 +14,21 @@ _navigateMap = (lat, long) => {
 }
 
 class RenderAtms extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            status: null,
+            modalVisible: false,
+            openSetting: false,
+            appState: AppState.currentState
+        };
+    }
+
+    getNearbyPlaces = async (ScreenName, obj) => {
+        this.props.navigation.navigate(ScreenName, obj)
+    }
+
     _renderContent = (atm) => {
         return (
             <Text style={{ color: 'black' }}>
@@ -21,12 +36,12 @@ class RenderAtms extends React.Component {
             </Text>
         );
     }
-    
+
     _renderHeader = (atm, expanded) => {
         let icon = '../assets/ICICI.png';
         return (
             <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', backgroundColor: '#479689ff' }}>
-    
+
                 <View style={{ flex: 4, height: 60 }}>
                     <View style={{ flexDirection: 'row', flex: 1, height: 60, marginTop: '10%' }}>
                         <Image style={{ flex: 3, height: '100%', width: '100%', resizeMode: 'contain', marginTop: '-5%' }} source={require(icon)} />
@@ -36,20 +51,20 @@ class RenderAtms extends React.Component {
                         </View>
                     </View>
                 </View>
-    
+
                 <View style={{ flex: 1.5 }}>
                     <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {atm.item.user_distance} Km </Text>
                 </View>
-    
+
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
                     <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
-                         alert('Would you like to rate the ATM?');
-                        _navigateMap(atm.item.lat, atm.item.long);
+                         this.getNearbyPlaces('Atms');
+
                     }}>
                         <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
                     </TouchableOpacity>
                 </View>
-    
+
                 {
                     expanded
                         ? <Icon style={{ fontSize: 30, marginRight: 10, color: 'white' }} name="remove-circle" />
@@ -63,10 +78,10 @@ class RenderAtms extends React.Component {
         let data = []
         data.push(atm)
         return (
-            <Accordion 
-                key={atm.item.id} 
-                dataArray={data} 
-                renderHeader={this._renderHeader} 
+            <Accordion
+                key={atm.item.id}
+                dataArray={data}
+                renderHeader={this._renderHeader}
                 renderContent={this._renderContent} />
         );
     }
@@ -178,6 +193,12 @@ class Atms extends React.Component {
         }
 
         if (this.state.atms) {
+
+            let atms = [{ id: 0, atm_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', lat: 28.6078, long: 77.0406 },
+            { id: 1, atm_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', lat: 28.6078, long: 77.0406 },
+            { id: 2, atm_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', lat: 28.6078, long: 77.0406  },
+            { id: 3, atm_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis', lat: 28.6078, long: 77.0406 },
+            { id: 4, atm_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi', lat: 28.6078, long: 77.0406 }]
 
             let showingAtms
             if (this.state.search) {
