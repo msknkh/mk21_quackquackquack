@@ -6,7 +6,15 @@ import * as Location from 'expo-location';
 import * as IntentLauncher from 'expo-intent-launcher';
 import { SearchBar, Slider } from 'react-native-elements';
 import escapeRegExp from 'escape-string-regexp';
+import call from 'react-native-phone-call'
 
+_makeCall = (phone) => {
+    const callObj = {
+        number: phone,
+        prompt: true
+    }
+    call(callObj).catch(console.error)       
+}
 _renderContent = (bankmitra) => {
     return (
         <Text style={{ color: 'black' }}>
@@ -22,7 +30,9 @@ _renderHeader = (bankmitra, expanded) => {
             <Image style={{ height: 50, width: 50 }} source={require(icon)} />
             <Text> {bankmitra.item.bankmitra_name} | {bankmitra.item.distance} Km </Text>
             <MaterialIcons name="navigation" size={24} color="black" />
-            <MaterialIcons name="call" size={24} color="black" />
+            <MaterialIcons name="call" size={24} color="black" onPress={ () => {
+                _makeCall(bankmitra.item.phone);
+            }} />
             {
                 expanded
                     ? <Icon style={{ fontSize: 18 }} name="remove-circle" />
@@ -137,10 +147,11 @@ class BankMitras extends React.Component {
         }
 
         if (this.state.bankmitras) {
-            let bankmitras = [{ id: 0, bankmitra_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi' }, { id: 1, bankmitra_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI' },
-            { id: 2, bankmitra_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara' },
-            { id: 3, bankmitra_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis' },
-            { id: 4, bankmitra_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi' }]
+            let bankmitras = [{ id: 0, bankmitra_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', phone: '9876511224' }, 
+            { id: 1, bankmitra_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', phone: '9876511224'},
+            { id: 2, bankmitra_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', phone: '9876511224' },
+            { id: 3, bankmitra_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis', phone: '9876511224' },
+            { id: 4, bankmitra_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi', phone: '9876511224' }]
 
             let showingbankmitras
             if (this.state.search) {
