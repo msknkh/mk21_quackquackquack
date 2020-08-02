@@ -32,7 +32,7 @@ class RenderAtms extends React.Component {
     _renderContent = (atm) => {
         return (
             <Text style={{ color: 'black' }}>
-                {atm.item.Address}
+                {atm.item.address}
             </Text>
         );
     }
@@ -46,14 +46,14 @@ class RenderAtms extends React.Component {
                     <View style={{ flexDirection: 'row', flex: 1, height: 60, marginTop: '10%' }}>
                         <Image style={{ flex: 3, height: '100%', width: '100%', resizeMode: 'contain', marginTop: '-5%' }} source={require(icon)} />
                         <View style={{ flex: 5, marginTop: -13 }}>
-                            <Text style={{ flex: 2, color: 'white' }}> {atm.item.atm_name} atm </Text>
-                            <Text style={{ flex: 1, fontSize: 10, marginTop: -45, color: 'white' }}>{atm.item.Address}</Text>
+                            <Text style={{ flex: 2, color: 'white' }}> {atm.item.bank_name} </Text>
+                            <Text style={{ flex: 1, fontSize: 10, marginTop: -45, color: 'white' }}>{atm.item.address}</Text>
                         </View>
                     </View>
                 </View>
 
                 <View style={{ flex: 1.5 }}>
-                    <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {atm.item.distance} Km </Text>
+                    <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {atm.item.user_distance} Km </Text>
                 </View>
 
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -93,15 +93,6 @@ class RenderAtms extends React.Component {
     }
 }
 
-// RenderAtms = ({ atms }) => {
-//     return (
-//         <FlatList data={atms} renderItem={renderAtm} />
-//     );
-// }
-
-
-
-
 class Atms extends React.Component {
     constructor(props) {
         super(props)
@@ -109,7 +100,7 @@ class Atms extends React.Component {
             location: null,
             status: null,
             appState: AppState.currentState,
-            atms: [],
+            atms: null,
             search: '',
             sliderValue: 2
         }
@@ -149,13 +140,12 @@ class Atms extends React.Component {
             this.setState({
                 location: location
             });
-            let lat = this.state.location.coords.latitude
-            let long = this.state.location.coords.longitude
-            let url = '/show/ATMS?latitude=' + lat + '&longitude=' + long
-            axios.get(url)
-                .then(function (response) {
-                    console.log(response);
-                    // set atms as response
+            let url1 = 'http://neo2207.pythonanywhere.com/show/ATM?latitude=28.360953&longitude=77.330029'
+
+            axios.get(url1)
+                .then(res => {
+                    let fecthedAtms = res.data
+                    this.setState({ atms: fecthedAtms })
                 })
                 .catch(function (error) {
                     console.log(error)
@@ -177,7 +167,8 @@ class Atms extends React.Component {
 
         let status = this.state.status;
         let location = this.state.location;
-        if (!status || (status === 'granted' && !location)) { // convert to !atms later
+        let atms = this.state.atms
+        if (!status || (status === 'granted' && (!location || !atms))) {
             return (
                 <Container>
                     <View style={styles.loading}>
@@ -202,6 +193,7 @@ class Atms extends React.Component {
         }
 
         if (this.state.atms) {
+
             let atms = [{ id: 0, atm_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', lat: 28.6078, long: 77.0406 },
             { id: 1, atm_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', lat: 28.6078, long: 77.0406 },
             { id: 2, atm_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', lat: 28.6078, long: 77.0406  },
@@ -211,10 +203,10 @@ class Atms extends React.Component {
             let showingAtms
             if (this.state.search) {
                 const match = new RegExp(escapeRegExp(this.state.search), 'i')
-                showingAtms = atms.filter((atm) => match.test(atm.atm_name) && (atm.distance < this.state.sliderValue))
+                showingAtms = atms.filter((atm) => match.test(atm.bank_name) && (atm.user_distance <= this.state.sliderValue))
             }
             else {
-                showingAtms = atms.filter(atm => (atm.distance <= this.state.sliderValue))
+                showingAtms = atms.filter(atm => (atm.user_distance <= this.state.sliderValue))
             }
 
             return (
@@ -249,17 +241,6 @@ class Atms extends React.Component {
                 </Container>
             )
         }
-
-
-        // if (this.state.location) {
-        //     return (
-        //         <Container>
-        //             <Text>
-        //                 NearBy Atms {JSON.stringify(this.state.location)}
-        //             </Text>
-        //         </Container>
-        //     );
-        // }
     }
 }
 

@@ -56,10 +56,11 @@ class Renderbanks extends React.Component {
                     <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
                          this.props.self.props.navigation.navigate('Feedback', bank.item);
                          _navigateMap(bank.item.lat, bank.item.long);
+
                     }}>
                         <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
+                    <TouchableOpacity style={{ flex: 1 }} onPress={() => {
                         _makeCall(bank.item.phone);
                     }}>
                         <Image style={{ height: 45, width: 45 }} source={require('../assets/callIcon.png')} />
