@@ -16,7 +16,7 @@ _makeCall = (phone) => {
         number: phone,
         prompt: true
     }
-    call(callObj).catch(console.error)       
+    call(callObj).catch(console.error)
 }
 
 _navigateMap = (lat, long) => {
@@ -34,13 +34,13 @@ class Renderbanks extends React.Component {
             </Text>
         );
     }
-    
+
     _renderHeader = (bank, expanded) => {
         let icon = '../assets/ICICI.png';
 
         return (
             <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', backgroundColor: '#479689ff' }}>
-    
+
                 <View style={{ flex: 4, height: 60 }}>
                     <View style={{ flexDirection: 'row', flex: 1, height: 60, marginTop: '10%' }}>
                         <Image style={{ flex: 3, height: '100%', width: '100%', resizeMode: 'contain', marginTop: '-5%' }} source={require(icon)} />
@@ -50,25 +50,26 @@ class Renderbanks extends React.Component {
                         </View>
                     </View>
                 </View>
-    
+
                 <View style={{ flex: 1.5 }}>
                     <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {bank.item.distance} Km </Text>
                 </View>
-    
+
                 <View style={{ flex: 2.5, flexDirection: 'row', justifyContent: 'space-between' }}>
                     <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
-                        this.navigated = true;
-                        _navigateMap(bank.item.lat, bank.item.long);   
+                         this.props.self.props.navigation.navigate('Feedback', bank.item);
+                         _navigateMap(bank.item.lat, bank.item.long);
+
                     }}>
                         <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
+                    <TouchableOpacity style={{ flex: 1 }} onPress={() => {
                         _makeCall(bank.item.phone);
                     }}>
                         <Image style={{ height: 45, width: 45 }} source={require('../assets/callIcon.png')} />
                     </TouchableOpacity>
                 </View>
-    
+
                 {
                     expanded
                         ? <Icon style={{ fontSize: 30, marginRight: 10, color: 'white' }} name="remove-circle" />
@@ -82,10 +83,10 @@ class Renderbanks extends React.Component {
         let data = []
         data.push(bank)
         return (
-            <Accordion 
-                key={bank.item.id} 
-                dataArray={data} 
-                renderHeader={this._renderHeader} 
+            <Accordion
+                key={bank.item.id}
+                dataArray={data}
+                renderHeader={this._renderHeader}
                 renderContent={this._renderContent} />
         );
     }
@@ -204,7 +205,7 @@ class Banks extends React.Component {
         }
 
         if (this.state.banks) {
-            let banks = [{ id: 0, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', phone: '9876511224', lat: 28.6078, long: 77.0406 }, 
+            let banks = [{ id: 0, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', phone: '9876511224', lat: 28.6078, long: 77.0406 },
             { id: 1, bank_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', phone: '9627311778', lat: 28.6078, long: 77.0406 },
             { id: 2, bank_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', phone: '9253611995', lat: 28.6078, long: 77.0406 },
             { id: 3, bank_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis', phone: '9528311223', lat: 28.6078, long: 77.0406 },
@@ -218,6 +219,8 @@ class Banks extends React.Component {
             else {
                 showingbanks = banks.filter(bank => (bank.distance <= this.state.sliderValue))
             }
+            self = this;
+
             self = this;
 
             return (
@@ -238,7 +241,7 @@ class Banks extends React.Component {
                             {
                                 showingbanks.length > 0 ?
                                     <View>
-                                        <Renderbanks banks={showingbanks} self={self} />
+                                        <Renderbanks banks={showingbanks} self = {self}/>
                                     </View>
                                     :
                                     <View style={styles.center}>
