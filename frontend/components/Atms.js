@@ -10,9 +10,7 @@ import axios from 'axios';
 import openMap from 'react-native-open-maps';
 
 _navigateMap = (lat, long) => {
-    // TODO Add user location in the start
-    // TODO End only accepts strings - adapt lat long
-    openMap({ start: 'Pushpanjali Enclave Pitampura' , end: {latitude: lat, longitude: long} });
+    openMap({ latitude: lat, longitude: long });
 }
 
 class RenderAtms extends React.Component {
@@ -45,6 +43,7 @@ class RenderAtms extends React.Component {
     
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
                     <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
+                         alert('Would you like to rate the ATM?');
                         _navigateMap(atm.item.lat, atm.item.long);
                     }}>
                         <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
@@ -188,11 +187,11 @@ class Atms extends React.Component {
         }
 
         if (this.state.atms) {
-            let atms = [{ id: 0, atm_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi' }, 
-            { id: 1, atm_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI' },
-            { id: 2, atm_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara' },
-            { id: 3, atm_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis' },
-            { id: 4, atm_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi' }]
+            let atms = [{ id: 0, atm_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', lat: 28.6078, long: 77.0406 }, 
+            { id: 1, atm_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', lat: 28.6078, long: 77.0406 },
+            { id: 2, atm_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', lat: 28.6078, long: 77.0406  },
+            { id: 3, atm_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis', lat: 28.6078, long: 77.0406 },
+            { id: 4, atm_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi', lat: 28.6078, long: 77.0406 }]
 
             let showingAtms
             if (this.state.search) {

@@ -6,46 +6,91 @@ import * as Location from 'expo-location';
 import * as IntentLauncher from 'expo-intent-launcher';
 import { SearchBar, Slider } from 'react-native-elements';
 import escapeRegExp from 'escape-string-regexp';
+import call from 'react-native-phone-call'
+import openMap from 'react-native-open-maps';
 
-_renderContent = (postoff) => {
-    return (
-        <Text style={{ color: 'black' }}>
-            {postoff.item.Address}
-        </Text>
-    );
+_makeCall = (phone) => {
+    const callObj = {
+        number: phone,
+        prompt: true
+    }
+    call(callObj).catch(console.error)       
 }
 
-_renderHeader = (postoff, expanded) => {
-    let icon = '../assets/ICICI.png';
-    return (
-        <View style={{ flexDirection: 'row', padding: 10, justifyContent: "space-between", alignItems: 'center' }}>
-            <Image style={{ height: 50, width: 50 }} source={require(icon)} />
-            <Text> {postoff.item.postoff_name} | {postoff.item.distance} Km </Text>
-            <MaterialIcons name="navigation" size={24} color="black" />
-            <MaterialIcons name="call" size={24} color="black" />
-            {
-                expanded
-                    ? <Icon style={{ fontSize: 18 }} name="remove-circle" />
-                    : <Icon style={{ fontSize: 18 }} name="add-circle" />
-            }
-        </View>
-    );
+_navigateMap = (lat, long) => {
+    openMap({ latitude: lat, longitude: long });
 }
 
+class RenderPostoffs extends React.Component {
+    _renderContent = (postoff) => {
+        return (
+            <Text style={{ color: 'black' }}>
+                {postoff.item.Address}
+            </Text>
+        );
+    }
+    
+    _renderHeader = (postoff, expanded) => {
+        let icon = '../assets/ICICI.png';
+        return (
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', backgroundColor: '#479689ff' }}>
+    
+                <View style={{ flex: 4, height: 60 }}>
+                    <View style={{ flexDirection: 'row', flex: 1, height: 60, marginTop: '10%' }}>
+                        <Image style={{ flex: 3, height: '100%', width: '100%', resizeMode: 'contain', marginTop: '-5%' }} source={require(icon)} />
+                        <View style={{ flex: 5, marginTop: -13 }}>
+                            <Text style={{ flex: 2, color: 'white' }}> {postoff.item.postoff_name} PO </Text>
+                            <Text style={{ flex: 1, fontSize: 10, marginTop: -45, color: 'white' }}>{postoff.item.Address}</Text>
+                        </View>
+                    </View>
+                </View>
+    
+                <View style={{ flex: 1.5 }}>
+                    <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {postoff.item.distance} Km </Text>
+                </View>
+    
+                <View style={{ flex: 2.5, flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
+                        alert('Would you like to rate the post office?');
+                        _navigateMap(postoff.item.lat, postoff.item.long);   
+                    }}>
+                        <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
+                        _makeCall(postoff.item.phone);
+                    }}>
+                        <Image style={{ height: 45, width: 45 }} source={require('../assets/callIcon.png')} />
+                    </TouchableOpacity>
+                </View>
+    
+                {
+                    expanded
+                        ? <Icon style={{ fontSize: 30, marginRight: 10, color: 'white' }} name="remove-circle" />
+                        : <Icon style={{ fontSize: 30, marginRight: 10, color: 'white' }} name="add-circle" />
+                }
+            </View>
+        );
+    }
 
-renderpostoff = (postoff) => {
-    let data = []
-    data.push(postoff)
-    return (
-        <Accordion key={postoff.item.id} dataArray={data} renderHeader={_renderHeader} renderContent={_renderContent} />
-    );
+    renderpostoff = (postoff) => {
+        let data = []
+        data.push(postoff)
+        return (
+            <Accordion 
+                key={postoff.item.id} 
+                dataArray={data} 
+                renderHeader={this._renderHeader} 
+                renderContent={this._renderContent} />
+        );
+    }
+
+    render() {
+        return (
+            <FlatList data={this.props.postoffs} renderItem={this.renderpostoff} />
+        );
+    }
 }
 
-Renderpostoffs = ({ postoffs }) => {
-    return (
-        <FlatList data={postoffs} renderItem={renderpostoff} />
-    );
-}
 
 class PostOffices extends React.Component {
     constructor(props) {
@@ -137,10 +182,11 @@ class PostOffices extends React.Component {
         }
 
         if (this.state.postoffs) {
-            let postoffs = [{ id: 0, postoff_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi' }, { id: 1, postoff_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI' },
-            { id: 2, postoff_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara' },
-            { id: 3, postoff_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis' },
-            { id: 4, postoff_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi' }]
+            let postoffs = [{ id: 0, postoff_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', phone: '9253611995', lat: 28.6078, long: 77.0406 }, 
+            { id: 1, postoff_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', phone: '9253611995', lat: 28.6078, long: 77.0406 },
+            { id: 2, postoff_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', phone: '9253611995', lat: 28.6078, long: 77.0406 },
+            { id: 3, postoff_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis', phone: '9253611995', lat: 28.6078, long: 77.0406 },
+            { id: 4, postoff_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi', phone: '9253611995', lat: 28.6078, long: 77.0406 }]
 
             let showingpostoffs
             if (this.state.search) {
@@ -169,7 +215,7 @@ class PostOffices extends React.Component {
                             {
                                 showingpostoffs.length > 0 ?
                                     <View>
-                                        <Renderpostoffs postoffs={showingpostoffs} />
+                                        <RenderPostoffs postoffs={showingpostoffs} />
                                     </View>
                                     :
                                     <View style={styles.center}>

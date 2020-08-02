@@ -6,8 +6,10 @@ import * as Location from 'expo-location';
 import * as IntentLauncher from 'expo-intent-launcher';
 import { SearchBar, Slider } from 'react-native-elements';
 import escapeRegExp from 'escape-string-regexp';
+import Feedback from './Feedback';
 import call from 'react-native-phone-call'
 import openMap from 'react-native-open-maps';
+// import { StackNavigator } from 'react-navigation';
 
 _makeCall = (phone) => {
     const callObj = {
@@ -18,9 +20,8 @@ _makeCall = (phone) => {
 }
 
 _navigateMap = (lat, long) => {
-    // TODO Add user location in the start
-    // TODO End only accepts strings - adapt lat long
-    openMap({ start: 'Pushpanjali Enclave Pitampura' , end: {latitude: lat, longitude: long} });
+    // TODO Use start end
+    openMap({ latitude: lat, longitude: long });
 }
 
 class Renderbanks extends React.Component {
@@ -53,7 +54,7 @@ class Renderbanks extends React.Component {
     
                 <View style={{ flex: 2.5, flexDirection: 'row', justifyContent: 'space-between' }}>
                     <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
-                        alert('Please rate the bank');
+                         alert('Would you like to rate the bank?');
                         _navigateMap(bank.item.lat, bank.item.long);   
                     }}>
                         <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
@@ -189,11 +190,11 @@ class Banks extends React.Component {
         }
 
         if (this.state.banks) {
-            let banks = [{ id: 0, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', phone: '9876511224', lat: '28.6078', long: '77.0406' }, 
-            { id: 1, bank_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', phone: '9627311778', lat: '28.6078', long: '77.0406' },
-            { id: 2, bank_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', phone: '9253611995', lat: '28.6078', long: '77.0406' },
-            { id: 3, bank_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis', phone: '9528311223', lat: '28.6078', long: '77.0406' },
-            { id: 4, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi', phone: '9058977665', lat: '28.6078', long: '77.0406' }]
+            let banks = [{ id: 0, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', phone: '9876511224', lat: 28.6078, long: 77.0406 }, 
+            { id: 1, bank_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', phone: '9627311778', lat: 28.6078, long: 77.0406 },
+            { id: 2, bank_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', phone: '9253611995', lat: 28.6078, long: 77.0406 },
+            { id: 3, bank_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis', phone: '9528311223', lat: 28.6078, long: 77.0406 },
+            { id: 4, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi', phone: '9058977665', lat: 28.6078, long: 77.0406 }]
 
             let showingbanks
             if (this.state.search) {

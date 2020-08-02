@@ -18,9 +18,7 @@ _makeCall = (phone) => {
 }
 
 _navigateMap = (lat, long) => {
-    // TODO Add user location in the start
-    // TODO End only accepts strings - adapt lat long
-    openMap({ start: 'Pushpanjali Enclave Pitampura' , end: {latitude: lat, longitude: long} });
+    openMap({ latitude: lat, longitude: long });
 }
 
 class RenderBankmitras extends React.Component {
@@ -53,7 +51,7 @@ class RenderBankmitras extends React.Component {
     
                 <View style={{ flex: 2.5, flexDirection: 'row', justifyContent: 'space-between' }}>
                     <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
-                        alert('Please rate the bankmitra');
+                        alert('Would you like to rate the Bank Mitra?');
                         _navigateMap(bankmitra.item.lat, bankmitra.item.long);   
                     }}>
                         <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
@@ -184,11 +182,11 @@ class BankMitras extends React.Component {
         }
 
         if (this.state.bankmitras) {
-            let bankmitras = [{ id: 0, bankmitra_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', phone: '9876511224' }, 
-            { id: 1, bankmitra_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', phone: '9876511224'},
-            { id: 2, bankmitra_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', phone: '9876511224' },
-            { id: 3, bankmitra_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis', phone: '9876511224' },
-            { id: 4, bankmitra_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi', phone: '9876511224' }]
+            let bankmitras = [{ id: 0, bankmitra_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', phone: '9876511224', lat: 28.6078, long: 77.0406 }, 
+            { id: 1, bankmitra_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', phone: '9876511224', lat: 28.6078, long: 77.0406 },
+            { id: 2, bankmitra_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', phone: '9876511224', lat: 28.6078, long: 77.0406 },
+            { id: 3, bankmitra_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis', phone: '9876511224', lat: 28.6078, long: 77.0406 },
+            { id: 4, bankmitra_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi', phone: '9876511224', lat: 28.6078, long: 77.0406 }]
 
             let showingbankmitras
             if (this.state.search) {

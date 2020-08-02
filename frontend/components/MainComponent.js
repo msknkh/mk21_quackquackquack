@@ -23,7 +23,7 @@ import MoneyMitra from './MoneyMitra';
 import WithdrawMoney from './WithdrawMoney';
 import DepositMoney from './DepositMoney';
 import Tutorial from './Tutorial';
-
+import Feedback from './Feedback';
 
 const Stack = createStackNavigator();
 
@@ -111,6 +111,10 @@ export default class MainComponent extends React.Component {
                         })} />
                         <Stack.Screen name="Tutorial" component={Tutorial} options={({ navigation }) => ({
                             headerTitle: 'Tutorial Videos',
+                            headerRight: () => <HeaderHomeButton navigation={navigation} />
+                        })} />
+                        <Stack.Screen name="Rate the FT" component={Feedback} options={({ navigation }) => ({
+                            headerTitle: 'Rate your visit',
                             headerRight: () => <HeaderHomeButton navigation={navigation} />
                         })} />
                     </Stack.Navigator>
