@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity, Image, Modal, AppState } from 'react-native';
+import { StyleSheet, Icon, View, TouchableOpacity, Image, Modal, AppState } from 'react-native';
 import { Container, Text } from 'native-base';
 import * as Location from 'expo-location';
 import * as IntentLauncher from 'expo-intent-launcher';
@@ -13,7 +13,7 @@ class NearbyPlaces extends React.Component {
             modalVisible: false,
             openSetting: false,
             appState: AppState.currentState
-        }; 
+        };
     }
 
     componentDidMount() {
@@ -84,48 +84,106 @@ class NearbyPlaces extends React.Component {
                 <View style={styles.content} >
                     <View style={{ flex: 1 }}>
                         <View style={[styles.row, { justifyContent: 'space-around' }]}>
-                            <View style={{ flex: 3, justifyContent: 'center' }}>
+                            <View style={{ flex: 2, justifyContent: 'center' }}>
                                 <Image style={styles.img} source={require('../assets/moneyMitra.png')} />
                             </View>
-                            <View style={{ flex: 7, justifyContent: 'center' }}>
+                            <View style={{ flex: 7.4, justifyContent: 'center' }}>
                                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Image style={{ resizeMode: 'stretch', height: '40%', width: '40%' }} source={require('../assets/nearby1.png')} />
-                                    <Text style={[styles.headText, { color: '#302ea2', marginTop: 10 }]}>Find Nearby Financial Touch Points</Text>
+                                    <Text style={[styles.headText, { color: '#000', marginBottom: '1%' }]}>Which financial touchpoint are you looking for?</Text>
                                 </View>
                             </View>
                         </View>
                     </View>
-                    <View style={{ flex: 1 }}>
-                        <View style={styles.row}>
-                        <TouchableOpacity onPress={() => this.getNearbyPlaces('Atms')} style={[styles.buttonLeft, { backgroundColor: 'red' }]}>
+                    <View style={{ flex: 4.5, marginBottom:10 }}>
+
+                            <TouchableOpacity onPress={() => this.getNearbyPlaces('Atms')} style={[styles.button, { backgroundColor: '#479689' }]}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Image style={{
-                                        height: 30,
-                                        width: 40,
-                                        marginRight: 10
-                                    }} source={require('../assets/default_ATM.png')} />
-                                    <Text style={styles.buttonText}>ATMs</Text>
+                                        marginLeft: '3%',
+                                        flex: 2,
+                                        height: '100%',
+                                        width: '100%',
+
+                                    }} source={require('../assets/nearbyATM.png')} />
+                                    <View style = {styles.buttonTextContainer}>
+                                      <Text style={styles.buttonText}></Text>
+                                      <Text style={styles.buttonText}>ATMs</Text>
+                                      <Text style={styles.buttonText}></Text>
+                                    </View>
                                 </View>
-                                
+
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('Banks')} style={[styles.buttonRight, { backgroundColor: 'red' }]}>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <Image style={{
-                                        height: 30,
-                                        width: 40,
-                                        marginRight: 10
-                                    }} source={require('../assets/axis.png')} />
-                                    <Text style={styles.buttonText}>Banks</Text>
-                                </View>
+                            <TouchableOpacity onPress={() => this.getNearbyPlaces('Banks')} style={[styles.button, { backgroundColor: '#9f50b0' }]}>
+                              <View style={{ flexDirection: 'row' }}>
+                                  <Image style={{
+                                      marginLeft: '3%',
+                                      flex: 2,
+                                      height: '100%',
+                                      width: '100%',
+
+                                  }} source={require('../assets/nearbyBanks.png')} />
+                                  <View style = {styles.buttonTextContainer}>
+                                    <Text style={styles.buttonText}></Text>
+                                    <Text style={styles.buttonText}>Bank Branches</Text>
+                                    <Text style={styles.buttonText}></Text>
+                                  </View>
+                              </View>
                             </TouchableOpacity>
-                        </View>
-                        <View style={styles.row}>
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('BankMitras')} style={[styles.buttonLeft, { backgroundColor: '#00cc00' }]}><Text style={styles.buttonText}>Bank Mitra</Text></TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('PostOffices')} style={[styles.buttonRight, { backgroundColor: '#00cc00' }]}><Text style={styles.buttonText}>Post Offices</Text></TouchableOpacity>
-                        </View>
-                        <View style={styles.row}>
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('CSCs')} style={[styles.buttonLeft, { backgroundColor: '#302ea2', marginRight: 10 }]}><Text style={styles.buttonText}>Common Service Centre</Text></TouchableOpacity>
-                        </View>
+
+
+                            <TouchableOpacity onPress={() => this.getNearbyPlaces('BankMitras')} style={[styles.button, { backgroundColor: '#2295f3' }]}>
+                              <View style={{ flexDirection: 'row' }}>
+                                  <Image style={{
+                                      marginLeft: '3%',
+                                      flex: 2,
+                                      height: '100%',
+                                      width: '100%',
+
+                                  }} source={require('../assets/nearbyBankMitra.png')} />
+                                  <View style = {styles.buttonTextContainer}>
+                                    <Text style={styles.buttonText}></Text>
+                                    <Text style={styles.buttonText}>Bank Mitras</Text>
+                                    <Text style={styles.buttonText}></Text>
+                                  </View>
+                              </View>
+                            </TouchableOpacity>
+
+
+                            <TouchableOpacity onPress={() => this.getNearbyPlaces('PostOffices')} style={[styles.button, { backgroundColor: '#302ea2' }]}>
+                              <View style={{ flexDirection: 'row' }}>
+                                  <Image style={{
+                                      marginLeft: '3%',
+                                      flex: 2,
+                                      height: '100%',
+                                      width: '100%',
+
+                                  }} source={require('../assets/nearbyPO.png')} />
+                                  <View style = {styles.buttonTextContainer}>
+                                    <Text style={styles.buttonText}></Text>
+                                    <Text style={styles.buttonText}>Post Offices</Text>
+                                    <Text style={styles.buttonText}></Text>
+                                  </View>
+                              </View>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={() => this.getNearbyPlaces('CSCs')} style={[styles.button, { backgroundColor: '#ffa726', marginRight: 10 }]}>
+                              <View style={{ flexDirection: 'row' }}>
+                                  <Image style={{
+                                      marginLeft: '3%',
+                                      flex: 2,
+                                      height: '100%',
+                                      width: '100%',
+
+                                  }} source={require('../assets/nearbyCSC.png')} />
+                                  <View style = {styles.buttonTextContainer}>
+                                    <Text style={styles.buttonText, {fontSize:10}}></Text>
+                                    <Text style={styles.buttonText}>Common Service</Text>
+                                    <Text style={styles.buttonText}>Centres</Text>
+                                    <Text style={styles.buttonText, {fontSize:10}}></Text>
+                                  </View>
+                              </View>
+                            </TouchableOpacity>
+
                     </View>
                 </View>
             </Container>
@@ -168,6 +226,7 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     button: {
+        flex: 1,
         backgroundColor: '#302ea2',
         padding: 10,
         margin: 10,
@@ -199,10 +258,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
     },
+    buttonTextContainer: {
+        justifyContent: 'center',
+        flex: 5.23,
+    },
     headText: {
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: 'bold',
-        textAlign: 'center'
+        textAlign: 'left'
     },
     img: {
         marginLeft: 5,
