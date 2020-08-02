@@ -15,6 +15,21 @@ _navigateMap = (lat, long) => {
 }
 
 class RenderAtms extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            status: null,
+            modalVisible: false,
+            openSetting: false,
+            appState: AppState.currentState
+        };
+    }
+
+    getNearbyPlaces = async (ScreenName, obj) => {
+        this.props.navigation.navigate(ScreenName, obj)
+    }
+
     _renderContent = (atm) => {
         return (
             <Text style={{ color: 'black' }}>
@@ -179,6 +194,12 @@ class Atms extends React.Component {
         }
 
         if (this.state.atms) {
+
+            let atms = [{ id: 0, atm_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', lat: 28.6078, long: 77.0406 },
+            { id: 1, atm_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', lat: 28.6078, long: 77.0406 },
+            { id: 2, atm_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', lat: 28.6078, long: 77.0406  },
+            { id: 3, atm_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis', lat: 28.6078, long: 77.0406 },
+            { id: 4, atm_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi', lat: 28.6078, long: 77.0406 }]
 
             let showingAtms
             if (this.state.search) {
