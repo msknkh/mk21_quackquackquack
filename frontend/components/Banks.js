@@ -6,6 +6,20 @@ import * as Location from 'expo-location';
 import * as IntentLauncher from 'expo-intent-launcher';
 import { SearchBar, Slider } from 'react-native-elements';
 import escapeRegExp from 'escape-string-regexp';
+import call from 'react-native-phone-call'
+ 
+const args = {
+  number: '998765', // String value with the number to call
+  prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call 
+}
+
+_makeCall = (phone) => {
+    const callObj = {
+        number: phone,
+        prompt: true
+    }
+    call(callObj).catch(console.error)       
+}
 
 _renderContent = (bank) => {
     return (
@@ -22,7 +36,9 @@ _renderHeader = (bank, expanded) => {
             <Image style={{ height: 50, width: 50 }} source={require(icon)} />
             <Text> {bank.item.bank_name} | {bank.item.distance} Km </Text>
             <MaterialIcons name="navigation" size={24} color="black" />
-            <MaterialIcons name="call" size={24} color="black" />
+            <MaterialIcons name="call" size={24} color="black" onPress={ () => {
+                _makeCall(bank.item.phone);
+            }} />
             {
                 expanded
                     ? <Icon style={{ fontSize: 18 }} name="remove-circle" />
@@ -137,10 +153,11 @@ class Banks extends React.Component {
         }
 
         if (this.state.banks) {
-            let banks = [{ id: 0, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi' }, { id: 1, bank_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI' },
-            { id: 2, bank_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara' },
-            { id: 3, bank_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis' },
-            { id: 4, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi' }]
+            let banks = [{ id: 0, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', phone: '9876511224' }, 
+            { id: 1, bank_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', phone: '9627311778' },
+            { id: 2, bank_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', phone: '9253611995' },
+            { id: 3, bank_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis', phone: '9528311223' },
+            { id: 4, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi', phone: '9058977665' }]
 
             let showingbanks
             if (this.state.search) {
