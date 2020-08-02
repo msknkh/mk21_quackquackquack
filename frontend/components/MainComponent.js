@@ -24,6 +24,16 @@ import WithdrawMoney from './WithdrawMoney';
 import DepositMoney from './DepositMoney';
 import Tutorial from './Tutorial';
 import Feedback from './Feedback';
+import Loan from './Loan';
+import Insurance from './Insurance';
+import Pension from './Pension';
+import Mudra from './Mudra';
+import StandUp from './StandUp';
+import Pmsby from './Pmsby';
+import Pmjjby from './Pmjjby';
+import Apy from './Apy';
+import Pmvvy from './Pmvvy';
+
 
 const Stack = createStackNavigator();
 
@@ -115,6 +125,42 @@ export default class MainComponent extends React.Component {
                         })} />
                         <Stack.Screen name="Feedback" component={Feedback} options={({ navigation }) => ({
                             headerTitle: 'Rate your visit',
+                            headerRight: () => <HeaderHomeButton navigation={navigation} />
+                        })} />
+                        <Stack.Screen name="Loan" component={Loan} options={({ navigation }) => ({
+                            headerTitle: 'Loan Schemes',
+                            headerRight: () => <HeaderHomeButton navigation={navigation} />
+                        })} />
+                        <Stack.Screen name="Insurance" component={Insurance} options={({ navigation }) => ({
+                            headerTitle: 'Insurance Schemes',
+                            headerRight: () => <HeaderHomeButton navigation={navigation} />
+                        })} />
+                        <Stack.Screen name="Pension" component={Pension} options={({ navigation }) => ({
+                            headerTitle: 'Pension Schemes',
+                            headerRight: () => <HeaderHomeButton navigation={navigation} />
+                        })} />
+                        <Stack.Screen name="Mudra" component={Mudra} options={({ navigation }) => ({
+                            headerTitle: 'MUDRA or PMMY',
+                            headerRight: () => <HeaderHomeButton navigation={navigation} />
+                        })} />
+                        <Stack.Screen name="StandUp" component={StandUp} options={({ navigation }) => ({
+                            headerTitle: 'Stand Up India',
+                            headerRight: () => <HeaderHomeButton navigation={navigation} />
+                        })} />
+                        <Stack.Screen name="Pmsby" component={Pmsby} options={({ navigation }) => ({
+                            headerTitle: 'PMSBY',
+                            headerRight: () => <HeaderHomeButton navigation={navigation} />
+                        })} />
+                        <Stack.Screen name="Pmjjby" component={Pmjjby} options={({ navigation }) => ({
+                            headerTitle: 'PMJJBY',
+                            headerRight: () => <HeaderHomeButton navigation={navigation} />
+                        })} />
+                        <Stack.Screen name="Apy" component={Apy} options={({ navigation }) => ({
+                            headerTitle: 'APY',
+                            headerRight: () => <HeaderHomeButton navigation={navigation} />
+                        })} />
+                        <Stack.Screen name="Pmvvy" component={Pmvvy} options={({ navigation }) => ({
+                            headerTitle: 'PMVVY',
                             headerRight: () => <HeaderHomeButton navigation={navigation} />
                         })} />
                     </Stack.Navigator>
