@@ -76,7 +76,7 @@ class NearbyPlaces extends React.Component {
                                     openSetting: true
                                 });
                                 this.openSetting();
-                            }} style={{backgroundColor: '#30fea2',padding: 10,margin: 10,borderRadius: 10}}><Text style={{ color: 'white' }}>Enable Location Services</Text></TouchableOpacity>
+                            }} style={{backgroundColor: '#302ea2',padding: 10,margin: 10,borderRadius: 10}}><Text style={{ color: 'white' }}>Enable Location Services</Text></TouchableOpacity>
                         </View>
                     </View>
                 </Modal>
