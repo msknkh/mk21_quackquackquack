@@ -10,7 +10,8 @@ import axios from 'axios';
 import openMap from 'react-native-open-maps';
 
 _navigateMap = (lat, long) => {
-    openMap({ latitude: lat, longitude: long });
+    let q = lat + ',' + long
+    openMap({ latitude: lat, longitude: long, zoom: 40, query: q ,travelType: 'drive', navigate_mode: 'navigate' });
 }
 
 class RenderAtms extends React.Component {
@@ -21,12 +22,12 @@ class RenderAtms extends React.Component {
             </Text>
         );
     }
-    
+
     _renderHeader = (atm, expanded) => {
         let icon = '../assets/ICICI.png';
         return (
             <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', backgroundColor: '#479689ff' }}>
-    
+
                 <View style={{ flex: 4, height: 60 }}>
                     <View style={{ flexDirection: 'row', flex: 1, height: 60, marginTop: '10%' }}>
                         <Image style={{ flex: 3, height: '100%', width: '100%', resizeMode: 'contain', marginTop: '-5%' }} source={require(icon)} />
@@ -36,20 +37,20 @@ class RenderAtms extends React.Component {
                         </View>
                     </View>
                 </View>
-    
+
                 <View style={{ flex: 1.5 }}>
                     <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {atm.item.user_distance} Km </Text>
                 </View>
-    
+
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
-                         alert('Would you like to rate the ATM?');
-                        _navigateMap(atm.item.lat, atm.item.long);
+                    <TouchableOpacity style={{ flex: 1 }} onPress={() => {
+                        alert('Would you like to rate the ATM?');
+                        _navigateMap(atm.item.latitude, atm.item.longitude);
                     }}>
                         <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
                     </TouchableOpacity>
                 </View>
-    
+
                 {
                     expanded
                         ? <Icon style={{ fontSize: 30, marginRight: 10, color: 'white' }} name="remove-circle" />
@@ -63,10 +64,10 @@ class RenderAtms extends React.Component {
         let data = []
         data.push(atm)
         return (
-            <Accordion 
-                key={atm.item.id} 
-                dataArray={data} 
-                renderHeader={this._renderHeader} 
+            <Accordion
+                key={atm.item.id}
+                dataArray={data}
+                renderHeader={this._renderHeader}
                 renderContent={this._renderContent} />
         );
     }
