@@ -70,6 +70,10 @@ export default class MainComponent extends React.Component {
                             headerTitle: 'Financial Touch Points',
                             headerRight: () => <HeaderHomeButton navigation={navigation} />
                         })} />
+                        <Stack.Screen name="HowItWorks" component={NearbyPlaces} options={({ navigation }) => ({
+                            headerTitle: 'Financial Services',
+                            headerRight: () => <HeaderHomeButton navigation={navigation} />
+                        })} />
                         <Stack.Screen name="MoneyMitra" component={MoneyMitra} options={({ navigation }) => ({
                             headerTitle: 'Money Mitra',
                             headerRight: () => <HeaderHomeButton navigation={navigation} />
