@@ -7,6 +7,7 @@ import * as IntentLauncher from 'expo-intent-launcher';
 import { SearchBar, Slider } from 'react-native-elements';
 import escapeRegExp from 'escape-string-regexp';
 import call from 'react-native-phone-call'
+import openMap from 'react-native-open-maps';
 
 _makeCall = (phone) => {
     const callObj = {
@@ -15,47 +16,81 @@ _makeCall = (phone) => {
     }
     call(callObj).catch(console.error)       
 }
-_renderContent = (bankmitra) => {
-    return (
-        <Text style={{ color: 'black' }}>
-            {bankmitra.item.Address}
-        </Text>
-    );
+
+_navigateMap = (lat, long) => {
+    openMap({ latitude: lat, longitude: long });
 }
 
-_renderHeader = (bankmitra, expanded) => {
-    let icon = '../assets/ICICI.png';
-    return (
-        <View style={{ flexDirection: 'row', padding: 10, justifyContent: "space-between", alignItems: 'center' }}>
-            <Image style={{ height: 50, width: 50 }} source={require(icon)} />
-            <Text> {bankmitra.item.bankmitra_name} | {bankmitra.item.distance} Km </Text>
-            <MaterialIcons name="navigation" size={24} color="black" />
-            <MaterialIcons name="call" size={24} color="black" onPress={ () => {
-                _makeCall(bankmitra.item.phone);
-            }} />
-            {
-                expanded
-                    ? <Icon style={{ fontSize: 18 }} name="remove-circle" />
-                    : <Icon style={{ fontSize: 18 }} name="add-circle" />
-            }
-        </View>
-    );
+class RenderBankmitras extends React.Component {
+    _renderContent = (bankmitra) => {
+        return (
+            <Text style={{ color: 'black' }}>
+                {bankmitra.item.Address}
+            </Text>
+        );
+    }
+    
+    _renderHeader = (bankmitra, expanded) => {
+        let icon = '../assets/ICICI.png';
+        return (
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', backgroundColor: '#479689ff' }}>
+    
+                <View style={{ flex: 4, height: 60 }}>
+                    <View style={{ flexDirection: 'row', flex: 1, height: 60, marginTop: '10%' }}>
+                        <Image style={{ flex: 3, height: '100%', width: '100%', resizeMode: 'contain', marginTop: '-5%' }} source={require(icon)} />
+                        <View style={{ flex: 5, marginTop: -13 }}>
+                            <Text style={{ flex: 2, color: 'white' }}> {bankmitra.item.bankmitra_name} bankmitra </Text>
+                            <Text style={{ flex: 1, fontSize: 10, marginTop: -45, color: 'white' }}>{bankmitra.item.Address}</Text>
+                        </View>
+                    </View>
+                </View>
+    
+                <View style={{ flex: 1.5 }}>
+                    <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {bankmitra.item.distance} Km </Text>
+                </View>
+    
+                <View style={{ flex: 2.5, flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
+                        alert('Would you like to rate the Bank Mitra?');
+                        _navigateMap(bankmitra.item.lat, bankmitra.item.long);   
+                    }}>
+                        <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
+                        _makeCall(bankmitra.item.phone);
+                    }}>
+                        <Image style={{ height: 45, width: 45 }} source={require('../assets/callIcon.png')} />
+                    </TouchableOpacity>
+                </View>
+    
+                {
+                    expanded
+                        ? <Icon style={{ fontSize: 30, marginRight: 10, color: 'white' }} name="remove-circle" />
+                        : <Icon style={{ fontSize: 30, marginRight: 10, color: 'white' }} name="add-circle" />
+                }
+            </View>
+        );
+    }
+
+    renderbankmitra = (bankmitra) => {
+        let data = []
+        data.push(bankmitra)
+        return (
+            <Accordion 
+                key={bankmitra.item.id} 
+                dataArray={data} 
+                renderHeader={this._renderHeader} 
+                renderContent={this._renderContent} />
+        );
+    }
+
+    render() {
+        return (
+            <FlatList data={this.props.bankmitras} renderItem={this.renderbankmitra} />
+        );
+    }
 }
 
-
-renderbankmitra = (bankmitra) => {
-    let data = []
-    data.push(bankmitra)
-    return (
-        <Accordion key={bankmitra.item.id} dataArray={data} renderHeader={_renderHeader} renderContent={_renderContent} />
-    );
-}
-
-Renderbankmitras = ({ bankmitras }) => {
-    return (
-        <FlatList data={bankmitras} renderItem={renderbankmitra} />
-    );
-}
 
 class BankMitras extends React.Component {
     constructor(props) {
@@ -147,11 +182,11 @@ class BankMitras extends React.Component {
         }
 
         if (this.state.bankmitras) {
-            let bankmitras = [{ id: 0, bankmitra_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', phone: '9876511224' }, 
-            { id: 1, bankmitra_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', phone: '9876511224'},
-            { id: 2, bankmitra_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', phone: '9876511224' },
-            { id: 3, bankmitra_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis', phone: '9876511224' },
-            { id: 4, bankmitra_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi', phone: '9876511224' }]
+            let bankmitras = [{ id: 0, bankmitra_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', phone: '9876511224', lat: 28.6078, long: 77.0406 }, 
+            { id: 1, bankmitra_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', phone: '9876511224', lat: 28.6078, long: 77.0406 },
+            { id: 2, bankmitra_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', phone: '9876511224', lat: 28.6078, long: 77.0406 },
+            { id: 3, bankmitra_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis', phone: '9876511224', lat: 28.6078, long: 77.0406 },
+            { id: 4, bankmitra_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi', phone: '9876511224', lat: 28.6078, long: 77.0406 }]
 
             let showingbankmitras
             if (this.state.search) {
@@ -180,7 +215,7 @@ class BankMitras extends React.Component {
                             {
                                 showingbankmitras.length > 0 ?
                                     <View>
-                                        <Renderbankmitras bankmitras={showingbankmitras} />
+                                        <RenderBankmitras bankmitras={showingbankmitras} />
                                     </View>
                                     :
                                     <View style={styles.center}>

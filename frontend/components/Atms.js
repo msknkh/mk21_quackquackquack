@@ -7,65 +7,75 @@ import * as IntentLauncher from 'expo-intent-launcher';
 import { SearchBar, Slider } from 'react-native-elements';
 import escapeRegExp from 'escape-string-regexp';
 import axios from 'axios';
+import openMap from 'react-native-open-maps';
 
-_renderContent = (atm) => {
-    return (
-        <Text style={{ color: 'black' }}>
-            {atm.item.address}
-        </Text>
-    );
+_navigateMap = (lat, long) => {
+    openMap({ latitude: lat, longitude: long });
 }
 
-_renderHeader = (atm, expanded) => {
-    let icon = '../assets/ICICI.png';
-    return (
-        <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', backgroundColor: '#479689ff' }}>
-
-            <View style={{ flex: 4, height: 60 }}>
-                <View style={{ flexDirection: 'row', flex: 1, height: 60, marginTop: '10%' }}>
-                    <Image style={{ flex: 3, height: '100%', width: '100%', resizeMode: 'contain', marginTop: '-5%' }} source={require(icon)} />
-                    <View style={{ flex: 5, marginTop: -13 }}>
-                        <Text style={{ flex: 2, color: 'white' }}>{atm.item.bank_name}</Text>
-                        <Text style={{ flex: 1, fontSize: 10, marginTop: -45, color: 'white' }}>{atm.item.address}</Text>
+class RenderAtms extends React.Component {
+    _renderContent = (atm) => {
+        return (
+            <Text style={{ color: 'black' }}>
+                {atm.item.address}
+            </Text>
+        );
+    }
+    
+    _renderHeader = (atm, expanded) => {
+        let icon = '../assets/ICICI.png';
+        return (
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', backgroundColor: '#479689ff' }}>
+    
+                <View style={{ flex: 4, height: 60 }}>
+                    <View style={{ flexDirection: 'row', flex: 1, height: 60, marginTop: '10%' }}>
+                        <Image style={{ flex: 3, height: '100%', width: '100%', resizeMode: 'contain', marginTop: '-5%' }} source={require(icon)} />
+                        <View style={{ flex: 5, marginTop: -13 }}>
+                            <Text style={{ flex: 2, color: 'white' }}> {atm.item.bank_name} </Text>
+                            <Text style={{ flex: 1, fontSize: 10, marginTop: -45, color: 'white' }}>{atm.item.address}</Text>
+                        </View>
                     </View>
                 </View>
+    
+                <View style={{ flex: 1.5 }}>
+                    <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {atm.item.user_distance} Km </Text>
+                </View>
+    
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
+                         alert('Would you like to rate the ATM?');
+                        _navigateMap(atm.item.lat, atm.item.long);
+                    }}>
+                        <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
+                    </TouchableOpacity>
+                </View>
+    
+                {
+                    expanded
+                        ? <Icon style={{ fontSize: 30, marginRight: 10, color: 'white' }} name="remove-circle" />
+                        : <Icon style={{ fontSize: 30, marginRight: 10, color: 'white' }} name="add-circle" />
+                }
             </View>
+        );
+    }
 
-            <View style={{ flex: 1.5 }}>
-                <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {atm.item.user_distance} Km </Text>
-            </View>
+    renderatm = (atm) => {
+        let data = []
+        data.push(atm)
+        return (
+            <Accordion 
+                key={atm.item.id} 
+                dataArray={data} 
+                renderHeader={this._renderHeader} 
+                renderContent={this._renderContent} />
+        );
+    }
 
-            <View style={{ flex: 2.5, flexDirection: 'row', justifyContent: 'space-between' }}>
-                <TouchableOpacity style={{ flex: 1 }}>
-                    <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
-                </TouchableOpacity>
-                <TouchableOpacity style={{ flex: 1 }}>
-                    <Image style={{ height: 45, width: 45 }} source={require('../assets/callIcon.png')} />
-                </TouchableOpacity>
-            </View>
-
-            {
-                expanded
-                    ? <Icon style={{ fontSize: 30, marginRight: 10, color: 'white' }} name="remove-circle" />
-                    : <Icon style={{ fontSize: 30, marginRight: 10, color: 'white' }} name="add-circle" />
-            }
-        </View>
-    );
-}
-
-
-renderAtm = (atm) => {
-    let data = []
-    data.push(atm)
-    return (
-        <Accordion key={atm.item.id} dataArray={data} renderHeader={_renderHeader} renderContent={_renderContent} />
-    );
-}
-
-RenderAtms = ({ atms }) => {
-    return (
-        <FlatList data={atms} renderItem={renderAtm} />
-    );
+    render() {
+        return (
+            <FlatList data={this.props.atms} renderItem={this.renderatm} />
+        );
+    }
 }
 
 class Atms extends React.Component {
@@ -169,7 +179,6 @@ class Atms extends React.Component {
 
         if (this.state.atms) {
 
-            let atms = this.state.atms
             let showingAtms
             if (this.state.search) {
                 const match = new RegExp(escapeRegExp(this.state.search), 'i')
