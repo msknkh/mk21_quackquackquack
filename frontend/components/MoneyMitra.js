@@ -27,7 +27,7 @@ class MoneyMitra extends React.Component{
                             </View>
                         </View>
                     </View>
-                    <View style={{ flex: 4.5, marginBottom:10 }}>
+                    <View style={{ flex: 4.5, marginBottom:'2%' }}>
 
                             <TouchableOpacity onPress={() => this.getNearbyPlaces('Loan')} style={[styles.button, { backgroundColor: '#479689' }]}>
                               <View style={{ flexDirection: 'row' }}>
@@ -165,30 +165,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#302ea2',
         padding: 10,
-        margin: 10,
+        margin: '1.8%',
         borderRadius: 10,
-    },
-    buttonLeft: {
-        flex: 1,
-        backgroundColor: "#302ea2",
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginLeft: 10,
-        marginBottom: 10,
-        marginRight: 5,
-        borderRadius: 5
-    },
-    buttonRight: {
-        flex: 1,
-        backgroundColor: "#302ea2",
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginRight: 10,
-        marginBottom: 10,
-        marginLeft: 5,
-        borderRadius: 5
-    },
-    buttonText: {
+    },buttonText: {
         color: "#fff",
         fontSize: 20,
         textAlign: 'center',
@@ -204,14 +183,14 @@ const styles = StyleSheet.create({
         textAlign: 'left'
     },
     img: {
-        marginLeft: 5,
+        marginLeft: '1.3%',
         resizeMode: 'stretch',
         height: '80%',
         width: '100%'
     },
     bottomField:{
-        margin: 10,
-        padding: 10,
+        margin: '2.3%',
+        padding: '2%',
         flex: 2,
         borderRadius: 10,
         justifyContent: 'center'
