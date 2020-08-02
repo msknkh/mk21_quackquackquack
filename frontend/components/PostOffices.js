@@ -1,17 +1,62 @@
 import React from 'react';
-import { Container, Text } from 'native-base';
-import { ActivityIndicator, View, StyleSheet, AppState, TouchableOpacity } from 'react-native';
-import { Foundation } from '@expo/vector-icons'
+import { Container, Text, Accordion, Icon } from 'native-base';
+import { ActivityIndicator, View, StyleSheet, AppState, TouchableOpacity, FlatList, Image } from 'react-native';
+import { Foundation, AntDesign, MaterialIcons } from '@expo/vector-icons'
 import * as Location from 'expo-location';
 import * as IntentLauncher from 'expo-intent-launcher';
+import { SearchBar, Slider } from 'react-native-elements';
+import escapeRegExp from 'escape-string-regexp';
 
-class PostOffices extends React.Component{
+_renderContent = (postoff) => {
+    return (
+        <Text style={{ color: 'black' }}>
+            {postoff.item.Address}
+        </Text>
+    );
+}
+
+_renderHeader = (postoff, expanded) => {
+    let icon = '../assets/ICICI.png';
+    return (
+        <View style={{ flexDirection: 'row', padding: 10, justifyContent: "space-between", alignItems: 'center' }}>
+            <Image style={{ height: 50, width: 50 }} source={require(icon)} />
+            <Text> {postoff.item.postoff_name} | {postoff.item.distance} Km </Text>
+            <MaterialIcons name="navigation" size={24} color="black" />
+            <MaterialIcons name="call" size={24} color="black" />
+            {
+                expanded
+                    ? <Icon style={{ fontSize: 18 }} name="remove-circle" />
+                    : <Icon style={{ fontSize: 18 }} name="add-circle" />
+            }
+        </View>
+    );
+}
+
+
+renderpostoff = (postoff) => {
+    let data = []
+    data.push(postoff)
+    return (
+        <Accordion key={postoff.item.id} dataArray={data} renderHeader={_renderHeader} renderContent={_renderContent} />
+    );
+}
+
+Renderpostoffs = ({ postoffs }) => {
+    return (
+        <FlatList data={postoffs} renderItem={renderpostoff} />
+    );
+}
+
+class PostOffices extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             location: null,
             status: null,
-            appState: AppState.currentState
+            appState: AppState.currentState,
+            postoffs: [],
+            search: '',
+            sliderValue: 2
         }
     }
 
@@ -49,6 +94,7 @@ class PostOffices extends React.Component{
             this.setState({
                 location: location
             });
+            // here will make api call to back end with lat and long
         }
     }
 
@@ -56,11 +102,17 @@ class PostOffices extends React.Component{
         IntentLauncher.startActivityAsync(IntentLauncher.ACTION_APPLICATION_SETTINGS);
     }
 
+    updateSearch = (search) => {
+        this.setState({
+            search: search
+        });
+    }
+
     render() {
 
         let status = this.state.status;
         let location = this.state.location;
-        if (!status || (status === 'granted' && !location)) {
+        if (!status || (status === 'granted' && !location)) { // convert to !postoffs later
             return (
                 <Container>
                     <View style={styles.loading}>
@@ -84,14 +136,52 @@ class PostOffices extends React.Component{
             );
         }
 
-        if (this.state.location) {
+        if (this.state.postoffs) {
+            let postoffs = [{ id: 0, postoff_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi' }, { id: 1, postoff_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI' },
+            { id: 2, postoff_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara' },
+            { id: 3, postoff_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis' },
+            { id: 4, postoff_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi' }]
+
+            let showingpostoffs
+            if (this.state.search) {
+                const match = new RegExp(escapeRegExp(this.state.search), 'i')
+                showingpostoffs = postoffs.filter((postoff) => match.test(postoff.postoff_name) && (postoff.distance < this.state.sliderValue))
+            }
+            else {
+                showingpostoffs = postoffs.filter(postoff => (postoff.distance <= this.state.sliderValue))
+            }
+
             return (
                 <Container>
-                    <Text>
-                        NearBy Post Offices {JSON.stringify(this.state.location)}
-                    </Text>
+                    <View style={{ flex: 1 }}>
+                        <View style={{ flex: 1, justifyContent: 'center' }}>
+                            <SearchBar platform='default' lightTheme round placeholder='Search postoff by name' value={this.state.search} onChangeText={this.updateSearch} />
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', }}>
+                                <View style={{ flex: 5 }}>
+                                    <Slider minimumValue={0} maximumValue={5} step={1} value={this.state.sliderValue} onValueChange={(value) => this.setState({ sliderValue: value })} />
+                                </View>
+                                <View style={{ flex: 1, alignItems: 'center' }}>
+                                    <Text>{this.state.sliderValue} Km</Text>
+                                </View>
+                            </View>
+                        </View>
+                        <View style={{ flex: 4 }}>
+                            {
+                                showingpostoffs.length > 0 ?
+                                    <View>
+                                        <Renderpostoffs postoffs={showingpostoffs} />
+                                    </View>
+                                    :
+                                    <View style={styles.center}>
+                                        <AntDesign name="frowno" size={50} color="#302ea2" />
+                                        <Text style={{ textAlign: 'center', color: '#302ea2' }}>
+                                            No postoffs within given range</Text>
+                                    </View>
+                            }
+                        </View>
+                    </View>
                 </Container>
-            );
+            )
         }
     }
 }
@@ -115,6 +205,5 @@ const styles = StyleSheet.create({
         borderRadius: 10
     }
 });
-
 
 export default PostOffices;

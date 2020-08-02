@@ -97,8 +97,27 @@ class NearbyPlaces extends React.Component {
                     </View>
                     <View style={{ flex: 1 }}>
                         <View style={styles.row}>
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('Atms')} style={[styles.buttonLeft, { backgroundColor: 'red' }]}><Text style={styles.buttonText}>ATMs</Text></TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('Banks')} style={[styles.buttonRight, { backgroundColor: 'red' }]}><Text style={styles.buttonText}>Banks</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.getNearbyPlaces('Atms')} style={[styles.buttonLeft, { backgroundColor: 'red' }]}>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <Image style={{
+                                        height: 30,
+                                        width: 40,
+                                        marginRight: 10
+                                    }} source={require('../assets/default_ATM.png')} />
+                                    <Text style={styles.buttonText}>ATMs</Text>
+                                </View>
+                                
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.getNearbyPlaces('Banks')} style={[styles.buttonRight, { backgroundColor: 'red' }]}>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <Image style={{
+                                        height: 30,
+                                        width: 40,
+                                        marginRight: 10
+                                    }} source={require('../assets/axis.png')} />
+                                    <Text style={styles.buttonText}>Banks</Text>
+                                </View>
+                            </TouchableOpacity>
                         </View>
                         <View style={styles.row}>
                             <TouchableOpacity onPress={() => this.getNearbyPlaces('BankMitras')} style={[styles.buttonLeft, { backgroundColor: '#00cc00' }]}><Text style={styles.buttonText}>Bank Mitra</Text></TouchableOpacity>
