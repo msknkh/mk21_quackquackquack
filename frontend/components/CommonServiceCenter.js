@@ -18,9 +18,7 @@ _makeCall = (phone) => {
 }
 
 _navigateMap = (lat, long) => {
-    // TODO Add user location in the start
-    // TODO End only accepts strings - adapt lat long
-    openMap({ start: 'Pushpanjali Enclave Pitampura' , end: {latitude: lat, longitude: long} });
+    openMap({ latitude: lat, longitude: long });
 }
 
 class RenderCSCs extends React.Component {
@@ -53,7 +51,7 @@ class RenderCSCs extends React.Component {
     
                 <View style={{ flex: 2.5, flexDirection: 'row', justifyContent: 'space-between' }}>
                     <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
-                        alert('Please rate the csc');
+                        alert('Would you like to rate the common service center?');
                         _navigateMap(csc.item.lat, csc.item.long);   
                     }}>
                         <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
@@ -184,11 +182,11 @@ class CommonServiceCenter extends React.Component {
         }
 
         if (this.state.cscs) {
-            let cscs = [{ id: 0, csc_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi' }, 
-            { id: 1, csc_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI' },
-            { id: 2, csc_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara' },
-            { id: 3, csc_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis' },
-            { id: 4, csc_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi' }]
+            let cscs = [{ id: 0, csc_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', phone: '9876511224', lat: 28.6078, long: 77.0406 }, 
+            { id: 1, csc_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', phone: '9876511224', lat: 28.6078, long: 77.0406 },
+            { id: 2, csc_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', phone: '9876511224', lat: 28.6078, long: 77.0406 },
+            { id: 3, csc_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis', phone: '9876511224', lat: 28.6078, long: 77.0406 },
+            { id: 4, csc_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi', phone: '9876511224', lat: 28.6078, long: 77.0406 }]
 
             let showingcscs
             if (this.state.search) {
