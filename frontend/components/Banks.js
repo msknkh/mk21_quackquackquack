@@ -25,6 +25,8 @@ _navigateMap = (lat, long) => {
 }
 
 class Renderbanks extends React.Component {
+    navigated = false;
+
     _renderContent = (bank) => {
         return (
             <Text style={{ color: 'black' }}>
@@ -35,6 +37,7 @@ class Renderbanks extends React.Component {
 
     _renderHeader = (bank, expanded) => {
         let icon = '../assets/ICICI.png';
+
         return (
             <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', backgroundColor: '#479689ff' }}>
 
@@ -88,18 +91,29 @@ class Renderbanks extends React.Component {
         );
     }
 
+    getNearbyPlaces = async (ScreenName) => {
+        this.props.self.props.navigation.navigate(ScreenName);
+    }
+
     render() {
         return (
+            <View>
             <FlatList data={this.props.banks} renderItem={this.renderbank} />
+            <View>
+            {
+                this.navigated
+                ? <TouchableOpacity style={styles.button} onPress={
+                    () => {
+                        this.getNearbyPlaces('Feedback');
+                    }}              
+                > <Text> Rate the bank? </Text></TouchableOpacity>
+                : <View></View>     
+            }
+            </View>
+            </View>
         );
     }
 }
-
-// Renderbanks = ({ banks }) => {
-//     return (
-//         <FlatList data={banks} renderItem={renderbank} />
-//     );
-// }
 
 class Banks extends React.Component {
     constructor(props) {
@@ -205,6 +219,7 @@ class Banks extends React.Component {
             else {
                 showingbanks = banks.filter(bank => (bank.distance <= this.state.sliderValue))
             }
+            self = this;
 
             self = this;
 
@@ -233,6 +248,7 @@ class Banks extends React.Component {
                                         <AntDesign name="frowno" size={50} color="#302ea2" />
                                         <Text style={{ textAlign: 'center', color: '#302ea2' }}>
                                             No banks within given range</Text>
+                                        <TouchableOpacity style={styles.button}><Text>Request for Bank</Text></TouchableOpacity>
                                     </View>
                             }
                         </View>

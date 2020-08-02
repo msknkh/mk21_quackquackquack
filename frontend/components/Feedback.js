@@ -4,7 +4,10 @@ import { Text } from 'react-native';
 class Feedback extends React.Component {
     render() {
         return (
-            <Text>How was the experience?</Text>
+            <View>
+                <Text style={{ textAlign: 'center', color: '#302ea2' }}>
+                    How was the experience? </Text>  
+            </View>
         );
     }
 }

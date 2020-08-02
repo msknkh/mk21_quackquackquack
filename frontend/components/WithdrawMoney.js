@@ -24,7 +24,7 @@ _renderHeader = (atm, expanded) => {
               <View style={{flexDirection:'row', flex:1, height: 60, marginTop:'10%'}}>
                 <Image style={{ flex:3, height: '100%', width: '100%', resizeMode: 'contain', marginTop:'-5%' }} source={require(icon)} />
                 <View style={{flex:5, marginTop:-13}}>
-                  <Text style={{flex:2, color:'white' }}>{atm.item.ban_name} ATM</Text>
+                  <Text style={{flex:2, color:'white' }}>{atm.item.bank_name} Bank</Text>
                   <Text style={{flex:1, fontSize:10,  marginTop:-45, color:'white' }}>{atm.item.Address}</Text>
                 </View>
               </View>
@@ -67,10 +67,7 @@ RenderAtms = ({ atms }) => {
     );
 }
 
-
-
-
-class Atms extends React.Component {
+class WithdrawMoney extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -179,6 +176,7 @@ class Atms extends React.Component {
                     <View style={{ flex: 1 }}>
                         <View style={{ flex: 1, justifyContent: 'center' }}>
                             <SearchBar platform='default' lightTheme round placeholder='Search ATM by name' value={this.state.search} onChangeText={this.updateSearch} />
+                            <Text style={{marginLeft: 10, marginTop: 10}}>You can withdraw money from an ATM, Bank and Bank Mitra.</Text>
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', }}>
                                 <View style={{ flex: 5 }}>
                                     <Slider minimumValue={0} maximumValue={5} step={1} value={this.state.sliderValue} onValueChange={(value) => this.setState({ sliderValue: value })} />
@@ -241,4 +239,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default Atms;
+export default WithdrawMoney;

@@ -36,6 +36,8 @@
     "react-native-safe-area-context": "~3.0.7",
     "react-native-screens": "~2.9.0",
     "react-native-web": "~0.11.7",
+    "react-native-webview": "^10.3.3",
+    "react-native-youtube-iframe": "^1.2.4",
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
