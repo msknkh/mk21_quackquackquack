@@ -104,8 +104,7 @@ class NearbyPlaces extends React.Component {
                     </View>
                     <View style={{ flex: 4.5, marginBottom: 10 }}>
 
-
-                            <TouchableOpacity onPress={() => {Speech.speak(`You'll now get a list for the ATMs near you`); this.getNearbyPlaces('Atms')}} style={[styles.button, { backgroundColor: '#479689' }]}>
+                        <TouchableOpacity onPress={() => {Speech.speak(`You'll now get a list for the ATMs near you`); this.getNearbyPlaces('Atms')}} style={[styles.button, { backgroundColor: '#479689' }]}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Image style={{
                                         marginLeft: '3%',
@@ -131,6 +130,7 @@ class NearbyPlaces extends React.Component {
                                       width: '100%',
 
 
+
                                 }} source={require('../assets/nearbyBanks.png')} />
                                 <View style={styles.buttonTextContainer}>
                                     <Text style={styles.buttonText}></Text>
@@ -139,6 +139,7 @@ class NearbyPlaces extends React.Component {
                                 </View>
                             </View>
                         </TouchableOpacity>
+
 
 
                             <TouchableOpacity onPress={() => {Speech.speak(`You'll now get a list for the Bank Mitras near you`); this.getNearbyPlaces('BankMitras')}} style={[styles.button, { backgroundColor: '#2295f3' }]}>
@@ -159,8 +160,6 @@ class NearbyPlaces extends React.Component {
                             </View>
                         </TouchableOpacity>
 
-
-
                             <TouchableOpacity onPress={() => {Speech.speak(`You'll now get a list for the Post Offices near you`); this.getNearbyPlaces('PostOffices')}} style={[styles.button, { backgroundColor: '#302ea2' }]}>
                               <View style={{ flexDirection: 'row' }}>
                                   <Image style={{
@@ -168,6 +167,7 @@ class NearbyPlaces extends React.Component {
                                       flex: 2,
                                       height: '100%',
                                       width: '100%',
+
 
 
                                 }} source={require('../assets/nearbyPO.png')} />
