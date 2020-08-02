@@ -176,7 +176,7 @@ class RenderAtms extends React.Component {
                     </View>
                 </Modal>
 
-                <FlatList data={this.props.atms} renderItem={this.renderatm} />
+                <FlatList data={this.props.atms} renderItem={this.renderatm} keyExtractor={item => String(item.id)} />
             </View>
         );
     }
