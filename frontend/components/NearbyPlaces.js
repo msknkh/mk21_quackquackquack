@@ -4,6 +4,8 @@ import { Container, Text } from 'native-base';
 import * as Location from 'expo-location';
 import * as IntentLauncher from 'expo-intent-launcher';
 
+import i18n from 'i18n-js';
+
 class NearbyPlaces extends React.Component {
 
     constructor(props) {
@@ -69,14 +71,14 @@ class NearbyPlaces extends React.Component {
                     visible={this.state.modalVisible}>
                     <View style={styles.centeredView}>
                         <View style={styles.modalView}>
-                            <Text style={styles.modalText}>You Need to Enable Location Services</Text>
+                            <Text style={styles.modalText}>{i18n.t("You Need to Enable Location Services")}</Text>
                             <TouchableOpacity onPress={() => {
                                 this.setState({
                                     modalVisible: false,
                                     openSetting: true
                                 });
                                 this.openSetting();
-                            }} style={{ backgroundColor: '#302ea2', padding: 10, margin: 10, borderRadius: 10 }}><Text style={{ color: 'white' }}>Enable Location Services</Text></TouchableOpacity>
+                            }} style={{ backgroundColor: '#302ea2', padding: 10, margin: 10, borderRadius: 10 }}><Text style={{ color: 'white' }}>{i18n.t("Enable Location Services")}</Text></TouchableOpacity>
                         </View>
                     </View>
                 </Modal>
@@ -89,7 +91,7 @@ class NearbyPlaces extends React.Component {
                             </View>
                             <View style={{ flex: 7.4, justifyContent: 'center' }}>
                                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={[styles.headText, { color: '#000', marginBottom: '1%' }]}>Which financial touchpoint are you looking for?</Text>
+                                    <Text style={[styles.headText, { color: '#000', marginBottom: '1%' }]}>{i18n.t("Which financial touchpoint are you looking for?")}</Text>
                                 </View>
                             </View>
                         </View>
@@ -107,7 +109,7 @@ class NearbyPlaces extends React.Component {
                                 }} source={require('../assets/nearbyATM.png')} />
                                 <View style={styles.buttonTextContainer}>
                                     <Text style={styles.buttonText}></Text>
-                                    <Text style={styles.buttonText}>ATMs</Text>
+                                    <Text style={styles.buttonText}>{i18n.t("ATMs")}</Text>
                                     <Text style={styles.buttonText}></Text>
                                 </View>
                             </View>
@@ -124,7 +126,7 @@ class NearbyPlaces extends React.Component {
                                 }} source={require('../assets/nearbyBanks.png')} />
                                 <View style={styles.buttonTextContainer}>
                                     <Text style={styles.buttonText}></Text>
-                                    <Text style={styles.buttonText}>Bank Branches</Text>
+                                    <Text style={styles.buttonText}>{i18n.t("Bank Branches")}</Text>
                                     <Text style={styles.buttonText}></Text>
                                 </View>
                             </View>
@@ -142,7 +144,7 @@ class NearbyPlaces extends React.Component {
                                 }} source={require('../assets/nearbyBankMitra.png')} />
                                 <View style={styles.buttonTextContainer}>
                                     <Text style={styles.buttonText}></Text>
-                                    <Text style={styles.buttonText}>Bank Mitras</Text>
+                                    <Text style={styles.buttonText}>{i18n.t("Bank Mitras")}</Text>
                                     <Text style={styles.buttonText}></Text>
                                 </View>
                             </View>
@@ -160,7 +162,7 @@ class NearbyPlaces extends React.Component {
                                 }} source={require('../assets/nearbyPO.png')} />
                                 <View style={styles.buttonTextContainer}>
                                     <Text style={styles.buttonText}></Text>
-                                    <Text style={styles.buttonText}>Post Offices</Text>
+                                    <Text style={styles.buttonText}>{i18n.t("Post Offices")}</Text>
                                     <Text style={styles.buttonText}></Text>
                                 </View>
                             </View>
@@ -177,8 +179,8 @@ class NearbyPlaces extends React.Component {
                                 }} source={require('../assets/nearbyCSC.png')} />
                                 <View style={styles.buttonTextContainer}>
                                     <Text style={[styles.buttonText, { fontSize: 10 }]}></Text>
-                                    <Text style={styles.buttonText}>Common Service</Text>
-                                    <Text style={styles.buttonText}>Centres</Text>
+                                    <Text style={styles.buttonText}>{i18n.t("Common Service")}</Text>
+                                    <Text style={styles.buttonText}>{i18n.t("Centres")}</Text>
                                     <Text style={[styles.buttonText, { fontSize: 10 }]}></Text>
                                 </View>
                             </View>

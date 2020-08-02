@@ -9,7 +9,7 @@ import escapeRegExp from 'escape-string-regexp';
 import Feedback from './Feedback';
 import call from 'react-native-phone-call'
 import openMap from 'react-native-open-maps';
-// import { StackNavigator } from 'react-navigation';
+import i18n from 'i18n-js';
 
 _makeCall = (phone) => {
     const callObj = {
@@ -45,14 +45,14 @@ class Renderbanks extends React.Component {
                     <View style={{ flexDirection: 'row', flex: 1, height: 60, marginTop: '10%' }}>
                         <Image style={{ flex: 3, height: '100%', width: '100%', resizeMode: 'contain', marginTop: '-5%' }} source={require(icon)} />
                         <View style={{ flex: 5, marginTop: -13 }}>
-                            <Text style={{ flex: 2, color: 'white' }}> {bank.item.bank_name} Bank </Text>
+                            <Text style={{ flex: 2, color: 'white' }}> {bank.item.bank_name} {i18n.t("Bank")} </Text>
                             <Text style={{ flex: 1, fontSize: 10, marginTop: -45, color: 'white' }}>{bank.item.Address}</Text>
                         </View>
                     </View>
                 </View>
 
                 <View style={{ flex: 1.5 }}>
-                    <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {bank.item.distance} Km </Text>
+                    <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {bank.item.distance} {i18n.t("Km")} </Text>
                 </View>
 
                 <View style={{ flex: 2.5, flexDirection: 'row', justifyContent: 'space-between' }}>
