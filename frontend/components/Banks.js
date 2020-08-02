@@ -248,6 +248,7 @@ class Banks extends React.Component {
                                         <AntDesign name="frowno" size={50} color="#302ea2" />
                                         <Text style={{ textAlign: 'center', color: '#302ea2' }}>
                                             No banks within given range</Text>
+                                        <TouchableOpacity style={styles.button}><Text>Request for Bank</Text></TouchableOpacity>
                                     </View>
                             }
                         </View>
