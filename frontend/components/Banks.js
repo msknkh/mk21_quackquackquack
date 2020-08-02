@@ -9,7 +9,7 @@ import escapeRegExp from 'escape-string-regexp';
 import Feedback from './Feedback';
 import call from 'react-native-phone-call'
 import openMap from 'react-native-open-maps';
-// import { StackNavigator } from 'react-navigation';
+import i18n from 'i18n-js';
 
 _makeCall = (phone) => {
     const callObj = {
@@ -25,6 +25,8 @@ _navigateMap = (lat, long) => {
 }
 
 class Renderbanks extends React.Component {
+    navigated = false;
+
     _renderContent = (bank) => {
         return (
             <Text style={{ color: 'black' }}>
@@ -35,6 +37,7 @@ class Renderbanks extends React.Component {
 
     _renderHeader = (bank, expanded) => {
         let icon = '../assets/ICICI.png';
+
         return (
             <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', backgroundColor: '#479689ff' }}>
 
@@ -42,14 +45,14 @@ class Renderbanks extends React.Component {
                     <View style={{ flexDirection: 'row', flex: 1, height: 60, marginTop: '10%' }}>
                         <Image style={{ flex: 3, height: '100%', width: '100%', resizeMode: 'contain', marginTop: '-5%' }} source={require(icon)} />
                         <View style={{ flex: 5, marginTop: -13 }}>
-                            <Text style={{ flex: 2, color: 'white' }}> {bank.item.bank_name} Bank </Text>
+                            <Text style={{ flex: 2, color: 'white' }}> {bank.item.bank_name} {i18n.t("Bank")} </Text>
                             <Text style={{ flex: 1, fontSize: 10, marginTop: -45, color: 'white' }}>{bank.item.Address}</Text>
                         </View>
                     </View>
                 </View>
 
                 <View style={{ flex: 1.5 }}>
-                    <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {bank.item.distance} Km </Text>
+                    <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {bank.item.distance} {i18n.t("Km")} </Text>
                 </View>
 
                 <View style={{ flex: 2.5, flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -88,18 +91,29 @@ class Renderbanks extends React.Component {
         );
     }
 
+    getNearbyPlaces = async (ScreenName) => {
+        this.props.self.props.navigation.navigate(ScreenName);
+    }
+
     render() {
         return (
+            <View>
             <FlatList data={this.props.banks} renderItem={this.renderbank} />
+            <View>
+            {
+                this.navigated
+                ? <TouchableOpacity style={styles.button} onPress={
+                    () => {
+                        this.getNearbyPlaces('Feedback');
+                    }}              
+                > <Text> Rate the bank? </Text></TouchableOpacity>
+                : <View></View>     
+            }
+            </View>
+            </View>
         );
     }
 }
-
-// Renderbanks = ({ banks }) => {
-//     return (
-//         <FlatList data={banks} renderItem={renderbank} />
-//     );
-// }
 
 class Banks extends React.Component {
     constructor(props) {
@@ -205,6 +219,7 @@ class Banks extends React.Component {
             else {
                 showingbanks = banks.filter(bank => (bank.distance <= this.state.sliderValue))
             }
+            self = this;
 
             self = this;
 
@@ -233,6 +248,7 @@ class Banks extends React.Component {
                                         <AntDesign name="frowno" size={50} color="#302ea2" />
                                         <Text style={{ textAlign: 'center', color: '#302ea2' }}>
                                             No banks within given range</Text>
+                                        <TouchableOpacity style={styles.button}><Text>Request for Bank</Text></TouchableOpacity>
                                     </View>
                             }
                         </View>

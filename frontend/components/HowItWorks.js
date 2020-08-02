@@ -179,8 +179,8 @@ class NearbyPlaces extends React.Component {
                                   }} source={require('../assets/nearbyCSC.png')} />
                                   <View style = {styles.buttonTextContainer}>
                                     <Text style={styles.buttonText, {fontSize:10}}></Text>
-                                    <Text style={styles.buttonText}>Tutorial videos</Text>
-                                    <Text style={styles.buttonText}>for this app</Text>
+                                    <Text style={styles.buttonText}>Tutorial on using</Text>
+                                    <Text style={styles.buttonText}>an ATM</Text>
                                     <Text style={styles.buttonText, {fontSize:10}}></Text>
                                   </View>
                               </View>
