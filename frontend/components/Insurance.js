@@ -1,10 +1,8 @@
 import React from 'react';
 import { StyleSheet, Icon, View, TouchableOpacity, Image, Modal, AppState } from 'react-native';
 import { Container, Text } from 'native-base';
-import * as Location from 'expo-location';
-import * as IntentLauncher from 'expo-intent-launcher';
 
-class MoneyMitra extends React.Component{
+class Loan extends React.Component{
 
     getNearbyPlaces = async (ScreenName) => {
         this.props.navigation.navigate(ScreenName)
@@ -22,63 +20,58 @@ class MoneyMitra extends React.Component{
                             </View>
                             <View style={{ flex: 7.4, justifyContent: 'center' }}>
                                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={[styles.headText, { color: '#000', marginBottom: '1%' }]}>What type of schemes are you be interested in?</Text>
+                                    <Text style={[styles.headText, { color: '#000', marginBottom: '1%' }]}>Please have a look at these 2 policies by the GOI:</Text>
                                 </View>
                             </View>
                         </View>
                     </View>
-                    <View style={{ flex: 4.5, marginBottom:'2%' }}>
+                    <View style={{ flex: 4.5, marginBottom:10 }}>
 
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('Loan')} style={[styles.button, { backgroundColor: '#479689' }]}>
+                            <TouchableOpacity onPress={() => this.getNearbyPlaces('Pmsby')} style={[styles.button, { backgroundColor: '#479689' }]}>
                               <View style={{ flexDirection: 'row' }}>
-                                <Image style={{
-                                    marginLeft: '3%',
-                                    flex: 2,
-                                    height: '100%',
-                                    width: '100%',
+                                <View style = {styles.buttonTextContainer, {
+                                  flex:3.1,
+                                  borderColor: 'white',
+                                  borderWidth: 2,
+                                  borderRadius: 10,
+                                }}>
+                                  <Text style={styles.buttonText}></Text>
+                                  <Text style={styles.buttonText, {fontSize:30, color: 'white', textAlign:'center'}}>PMSBY</Text>
+                                  <Text style={styles.buttonText}></Text>
+                                </View>
 
-                                }} source={require('../assets/nearbyATM.png')} />
                                 <View style = {styles.buttonTextContainer}>
-                                  <Text style={styles.buttonText}></Text>
-                                  <Text style={styles.buttonText}>Loan Schemes</Text>
-                                  <Text style={styles.buttonText}></Text>
+
+                                <Text style={styles.buttonText}>Pradhan Mantri</Text>
+                                  <Text style={styles.buttonText}>Suraksha Bima</Text>
+                                  <Text style={styles.buttonText}>Yojana (PMSBY)</Text>
+
                                 </View>
                               </View>
                             </TouchableOpacity>
 
 
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('Insurance')} style={[styles.button, { backgroundColor: '#9f50b0' }]}>
+
+                            <TouchableOpacity onPress={() => this.getNearbyPlaces('Pmjjby')} style={[styles.button, { backgroundColor: '#2295f3' }]}>
                               <View style={{ flexDirection: 'row' }}>
-                                  <Image style={{
-                                      marginLeft: '3%',
-                                      flex: 2,
-                                      height: '100%',
-                                      width: '100%',
+                                <View style = {styles.buttonTextContainer, {
+                                  flex:3.1,
+                                  borderColor: 'white',
+                                  borderWidth: 2,
+                                  borderRadius: 10,
+                                }}>
+                                  <Text style={styles.buttonText}></Text>
+                                  <Text style={styles.buttonText, {fontSize:30, color: 'white', textAlign:'center'}}>PMJJBY</Text>
+                                  <Text style={styles.buttonText}></Text>
+                                </View>
 
-                                  }} source={require('../assets/nearbyBanks.png')} />
-                                  <View style = {styles.buttonTextContainer}>
-                                    <Text style={styles.buttonText}></Text>
-                                    <Text style={styles.buttonText}>Insurance Schemes</Text>
-                                    <Text style={styles.buttonText}></Text>
-                                  </View>
-                              </View>
-                            </TouchableOpacity>
+                                <View style = {styles.buttonTextContainer}>
 
+                                  <Text style={styles.buttonText}>Pradhan Mantri Jeevan</Text>
+                                  <Text style={styles.buttonText}>Jyoti Bima Yojana</Text>
+                                  <Text style={styles.buttonText}>(PMJJBY)</Text>
 
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('Pension')} style={[styles.button, { backgroundColor: '#2295f3' }]}>
-                              <View style={{ flexDirection: 'row' }}>
-                                  <Image style={{
-                                      marginLeft: '3%',
-                                      flex: 2,
-                                      height: '100%',
-                                      width: '100%',
-
-                                  }} source={require('../assets/nearbyBankMitra.png')} />
-                                  <View style = {styles.buttonTextContainer}>
-                                    <Text style={styles.buttonText}></Text>
-                                    <Text style={styles.buttonText}>Pension Schemes</Text>
-                                    <Text style={styles.buttonText}></Text>
-                                  </View>
+                                </View>
                               </View>
                             </TouchableOpacity>
 
@@ -165,9 +158,12 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#302ea2',
         padding: 10,
-        margin: '1.8%',
+        margin: '2%',
         borderRadius: 10,
-    },buttonText: {
+        maxHeight: 118,
+
+    },
+    buttonText: {
         color: "#fff",
         fontSize: 20,
         textAlign: 'center',
@@ -183,14 +179,14 @@ const styles = StyleSheet.create({
         textAlign: 'left'
     },
     img: {
-        marginLeft: '1.3%',
+        marginLeft: 5,
         resizeMode: 'stretch',
         height: '80%',
         width: '100%'
     },
     bottomField:{
-        margin: '2.3%',
-        padding: '2%',
+        margin: 10,
+        padding: 10,
         flex: 2,
         borderRadius: 10,
         justifyContent: 'center'
@@ -214,4 +210,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default MoneyMitra;
+export default Loan;
