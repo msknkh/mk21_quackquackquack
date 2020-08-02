@@ -18,6 +18,7 @@ import Banks from './Banks';
 import CommonServiceCenter from './CommonServiceCenter';
 import PostOffices from './PostOffices';
 import NearbyPlaces from './NearbyPlaces';
+import HowItWorks from './HowItWorks'
 import MoneyMitra from './MoneyMitra';
 
 
@@ -70,7 +71,7 @@ export default class MainComponent extends React.Component {
                             headerTitle: 'Financial Touch Points',
                             headerRight: () => <HeaderHomeButton navigation={navigation} />
                         })} />
-                        <Stack.Screen name="HowItWorks" component={NearbyPlaces} options={({ navigation }) => ({
+                        <Stack.Screen name="HowItWorks" component={HowItWorks} options={({ navigation }) => ({
                             headerTitle: 'Financial Services',
                             headerRight: () => <HeaderHomeButton navigation={navigation} />
                         })} />
