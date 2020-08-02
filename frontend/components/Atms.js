@@ -1,17 +1,17 @@
 import React from 'react';
 import { Container, Text, Accordion, Icon } from 'native-base';
-import { ActivityIndicator, View, StyleSheet, AppState, TouchableOpacity, FlatList, Image } from 'react-native';
+import { ActivityIndicator, View, StyleSheet, AppState, TouchableOpacity, FlatList, Image, Modal, TextInput } from 'react-native';
 import { Foundation, AntDesign } from '@expo/vector-icons'
 import * as Location from 'expo-location';
 import * as IntentLauncher from 'expo-intent-launcher';
-import { SearchBar, Slider } from 'react-native-elements';
+import { SearchBar, Slider, Rating, CheckBox } from 'react-native-elements';
 import escapeRegExp from 'escape-string-regexp';
 import axios from 'axios';
 import openMap from 'react-native-open-maps';
 
 _navigateMap = (lat, long) => {
     let q = lat + ',' + long
-    openMap({ latitude: lat, longitude: long, zoom: 40, query: q ,travelType: 'drive', navigate_mode: 'navigate' });
+    openMap({ latitude: lat, longitude: long, zoom: 40, query: q, travelType: 'drive', navigate_mode: 'navigate' });
 }
 
 class RenderAtms extends React.Component {
@@ -19,15 +19,14 @@ class RenderAtms extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            status: null,
-            modalVisible: false,
-            openSetting: false,
-            appState: AppState.currentState
+            appState: AppState.currentState,
+            modalAskForFeedback: false,
+            modalFeedback: false,
+            atmId: null,
+            feedback_rating: null,
+            feedback_text: null,
+            feedback_check: false
         };
-    }
-
-    getNearbyPlaces = async (ScreenName, obj) => {
-        this.props.navigation.navigate(ScreenName, obj)
     }
 
     _renderContent = (atm) => {
@@ -42,7 +41,6 @@ class RenderAtms extends React.Component {
         let icon = '../assets/ICICI.png';
         return (
             <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', backgroundColor: '#479689ff' }}>
-
                 <View style={{ flex: 4, height: 60 }}>
                     <View style={{ flexDirection: 'row', flex: 1, height: 60, marginTop: '10%' }}>
                         <Image style={{ flex: 3, height: '100%', width: '100%', resizeMode: 'contain', marginTop: '-5%' }} source={require(icon)} />
@@ -59,8 +57,8 @@ class RenderAtms extends React.Component {
 
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
                     <TouchableOpacity style={{ flex: 1 }} onPress={() => {
-                        alert('Would you like to rate the ATM?');
                         _navigateMap(atm.item.latitude, atm.item.longitude);
+                        this.setState({ modalAskForFeedback: true, atmId: atm.item.id })
                     }}>
                         <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
                     </TouchableOpacity>
@@ -87,9 +85,82 @@ class RenderAtms extends React.Component {
         );
     }
 
+    sendFeedback = () => {
+        let rating = this.state.feedback_rating
+        let nonfunctional = this.state.feedback_check
+        let text = this.state.feedback_text
+
+
+
+
+    }
+
     render() {
         return (
-            <FlatList data={this.props.atms} renderItem={this.renderatm} />
+            <View>
+                <Modal
+                    animationType="fade"
+                    transparent={true}
+                    visible={this.state.modalAskForFeedback}>
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <Text style={styles.modalText}> Would you like to Rate </Text>
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', alignContent: 'center' }}>
+                                <TouchableOpacity onPress={() => {
+                                    this.setState({
+                                        modalAskForFeedback: false
+                                    });
+                                }} style={{ backgroundColor: '#302ea2', padding: 10, margin: 10, borderRadius: 10 }}><Text style={{ color: 'white' }}>No</Text></TouchableOpacity>
+                                <TouchableOpacity onPress={() => {
+                                    this.setState({
+                                        modalAskForFeedback: false,
+                                        modalFeedback: true
+                                    });
+                                }} style={{ backgroundColor: '#302ea2', padding: 10, margin: 10, borderRadius: 10 }}><Text style={{ color: 'white' }}>Yes</Text></TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+
+                <Modal
+                    animationType="fade"
+                    transparent={true}
+                    visible={this.state.modalFeedback}>
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <Text style={styles.modalText}>Feedback</Text>
+                            <Rating defaultRating={0} fractions={0} startingValue={0} onFinishRating={(rating) => {
+                                this.setState({
+                                    feedback_rating: rating
+                                })
+                            }} />
+
+                            <CheckBox checked={this.state.feedback_check} onPress={() => {
+                                this.setState({
+                                    feedback_check: !this.state.feedback_check
+                                })
+                            }} title="Report Non Functional" />
+                            <TextInput placeholder="Your Feedback"
+                                style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 5 }}
+                                onChangeText={text => {
+                                    this.setState({
+                                        feedback_text: text
+                                    })
+                                }}
+                                value={this.state.feedback_text}
+                            />
+                            <TouchableOpacity onPress={() => {
+                                this.sendFeedback();
+                                this.setState({
+                                    modalFeedback: false
+                                });
+                            }} style={{ backgroundColor: '#302ea2', padding: 10, margin: 10, borderRadius: 10 }}><Text style={{ color: 'white' }}>Submit</Text></TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
+
+                <FlatList data={this.props.atms} renderItem={this.renderatm} />
+            </View>
         );
     }
 }
@@ -164,6 +235,13 @@ class Atms extends React.Component {
         });
     }
 
+    requestATM = () => {
+        let latitude = this.state.location.coords.latitude
+        let longitude = this.state.location.coords.longitude
+        let distance = this.state.sliderValue
+
+    }
+
     render() {
 
         let status = this.state.status;
@@ -194,13 +272,7 @@ class Atms extends React.Component {
         }
 
         if (this.state.atms) {
-
-            let atms = [{ id: 0, atm_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi', lat: 28.6078, long: 77.0406 },
-            { id: 1, atm_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI', lat: 28.6078, long: 77.0406 },
-            { id: 2, atm_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara', lat: 28.6078, long: 77.0406  },
-            { id: 3, atm_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis', lat: 28.6078, long: 77.0406 },
-            { id: 4, atm_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi', lat: 28.6078, long: 77.0406 }]
-
+            let atms = this.state.atms
             let showingAtms
             if (this.state.search) {
                 const match = new RegExp(escapeRegExp(this.state.search), 'i')
@@ -235,6 +307,9 @@ class Atms extends React.Component {
                                         <AntDesign name="frowno" size={50} color="#302ea2" />
                                         <Text style={{ textAlign: 'center', color: '#302ea2' }}>
                                             No Atms within given range</Text>
+                                        <TouchableOpacity onPress={() => {
+                                            this.requestATM();
+                                        }} style={{ backgroundColor: '#302ea2', padding: 10, margin: 10, borderRadius: 10 }}><Text style={{ color: 'white' }}>Request ATM</Text></TouchableOpacity>
                                     </View>
                             }
                         </View>
@@ -262,7 +337,32 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 10,
         borderRadius: 10
-    }
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: '#000000aa'
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+    modalText: {
+        marginBottom: 15,
+        textAlign: "center"
+    },
 });
 
 
