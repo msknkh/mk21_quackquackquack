@@ -89,14 +89,14 @@ class NearbyPlaces extends React.Component {
                             </View>
                             <View style={{ flex: 7.4, justifyContent: 'center' }}>
                                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={[styles.headText, { color: '#000', marginBottom: '1%' }]}>Which financial touchpoint are you looking for?</Text>
+                                    <Text style={[styles.headText, { color: '#000', marginBottom: '1%' }]}>Which action do you want to perform?</Text>
                                 </View>
                             </View>
                         </View>
                     </View>
                     <View style={{ flex: 4.5, marginBottom:10 }}>
 
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('Atms')} style={[styles.button, { backgroundColor: '#479689' }]}>
+                            <TouchableOpacity onPress={() => this.getNearbyPlaces('WithdrawMoney')} style={[styles.button, { backgroundColor: '#479689' }]}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Image style={{
                                         marginLeft: '3%',
@@ -107,13 +107,13 @@ class NearbyPlaces extends React.Component {
                                     }} source={require('../assets/nearbyATM.png')} />
                                     <View style = {styles.buttonTextContainer}>
                                       <Text style={styles.buttonText}></Text>
-                                      <Text style={styles.buttonText}>ATMs</Text>
+                                      <Text style={styles.buttonText}>Withdraw Money</Text>
                                       <Text style={styles.buttonText}></Text>
                                     </View>
                                 </View>
 
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('Banks')} style={[styles.button, { backgroundColor: '#9f50b0' }]}>
+                            <TouchableOpacity onPress={() => this.getNearbyPlaces('DepositMoney')} style={[styles.button, { backgroundColor: '#9f50b0' }]}>
                               <View style={{ flexDirection: 'row' }}>
                                   <Image style={{
                                       marginLeft: '3%',
@@ -124,14 +124,14 @@ class NearbyPlaces extends React.Component {
                                   }} source={require('../assets/nearbyBanks.png')} />
                                   <View style = {styles.buttonTextContainer}>
                                     <Text style={styles.buttonText}></Text>
-                                    <Text style={styles.buttonText}>Bank Branches</Text>
+                                    <Text style={styles.buttonText}>Deposit Money</Text>
                                     <Text style={styles.buttonText}></Text>
                                   </View>
                               </View>
                             </TouchableOpacity>
 
 
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('BankMitras')} style={[styles.button, { backgroundColor: '#2295f3' }]}>
+                            <TouchableOpacity onPress={() => this.getNearbyPlaces('WithdrawMoney')} style={[styles.button, { backgroundColor: '#2295f3' }]}>
                               <View style={{ flexDirection: 'row' }}>
                                   <Image style={{
                                       marginLeft: '3%',
@@ -141,15 +141,16 @@ class NearbyPlaces extends React.Component {
 
                                   }} source={require('../assets/nearbyBankMitra.png')} />
                                   <View style = {styles.buttonTextContainer}>
-                                    <Text style={styles.buttonText}></Text>
-                                    <Text style={styles.buttonText}>Bank Mitras</Text>
-                                    <Text style={styles.buttonText}></Text>
+                                    <Text style={styles.buttonText, {fontSize:10}}></Text>
+                                    <Text style={styles.buttonText}>Open a new</Text>
+                                    <Text style={styles.buttonText}>account</Text>
+                                    <Text style={styles.buttonText, {fontSize:10}}></Text>
                                   </View>
                               </View>
                             </TouchableOpacity>
 
 
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('PostOffices')} style={[styles.button, { backgroundColor: '#302ea2' }]}>
+                            <TouchableOpacity onPress={() => this.getNearbyPlaces('DepositMoney')} style={[styles.button, { backgroundColor: '#302ea2' }]}>
                               <View style={{ flexDirection: 'row' }}>
                                   <Image style={{
                                       marginLeft: '3%',
@@ -159,14 +160,15 @@ class NearbyPlaces extends React.Component {
 
                                   }} source={require('../assets/nearbyPO.png')} />
                                   <View style = {styles.buttonTextContainer}>
-                                    <Text style={styles.buttonText}></Text>
-                                    <Text style={styles.buttonText}>Post Offices</Text>
-                                    <Text style={styles.buttonText}></Text>
+                                    <Text style={styles.buttonText, {fontSize:10}}></Text>
+                                    <Text style={styles.buttonText}>Know more about</Text>
+                                    <Text style={styles.buttonText}>schemes</Text>
+                                    <Text style={styles.buttonText, {fontSize:10}}></Text>
                                   </View>
                               </View>
                             </TouchableOpacity>
 
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('CSCs')} style={[styles.button, { backgroundColor: '#ffa726', marginRight: 10 }]}>
+                            <TouchableOpacity onPress={() => this.getNearbyPlaces('Tutorial')} style={[styles.button, { backgroundColor: '#ffa726', marginRight: 10 }]}>
                               <View style={{ flexDirection: 'row' }}>
                                   <Image style={{
                                       marginLeft: '3%',
@@ -177,8 +179,8 @@ class NearbyPlaces extends React.Component {
                                   }} source={require('../assets/nearbyCSC.png')} />
                                   <View style = {styles.buttonTextContainer}>
                                     <Text style={styles.buttonText, {fontSize:10}}></Text>
-                                    <Text style={styles.buttonText}>Common Service</Text>
-                                    <Text style={styles.buttonText}>Centres</Text>
+                                    <Text style={styles.buttonText}>Tutorial videos</Text>
+                                    <Text style={styles.buttonText}>for this app</Text>
                                     <Text style={styles.buttonText, {fontSize:10}}></Text>
                                   </View>
                               </View>

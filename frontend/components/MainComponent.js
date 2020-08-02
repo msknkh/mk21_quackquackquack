@@ -18,8 +18,11 @@ import Banks from './Banks';
 import CommonServiceCenter from './CommonServiceCenter';
 import PostOffices from './PostOffices';
 import NearbyPlaces from './NearbyPlaces';
+import HowItWorks from './HowItWorks';
 import MoneyMitra from './MoneyMitra';
-
+import WithdrawMoney from './WithdrawMoney';
+import DepositMoney from './DepositMoney';
+import Tutorial from './Tutorial';
 
 
 const Stack = createStackNavigator();
@@ -70,6 +73,10 @@ export default class MainComponent extends React.Component {
                             headerTitle: 'Financial Touch Points',
                             headerRight: () => <HeaderHomeButton navigation={navigation} />
                         })} />
+                        <Stack.Screen name="HowItWorks" component={HowItWorks} options={({ navigation }) => ({
+                            headerTitle: 'Financial Services',
+                            headerRight: () => <HeaderHomeButton navigation={navigation} />
+                        })} />
                         <Stack.Screen name="MoneyMitra" component={MoneyMitra} options={({ navigation }) => ({
                             headerTitle: 'Money Mitra',
                             headerRight: () => <HeaderHomeButton navigation={navigation} />
@@ -92,6 +99,18 @@ export default class MainComponent extends React.Component {
                         })} />
                         <Stack.Screen name="CSCs" component={CommonServiceCenter} options={({ navigation }) => ({
                             headerTitle: 'Common Service Centres',
+                            headerRight: () => <HeaderHomeButton navigation={navigation} />
+                        })} />
+                        <Stack.Screen name="WithdrawMoney" component={WithdrawMoney} options={({ navigation }) => ({
+                            headerTitle: 'ATMs, Banks & Mitras',
+                            headerRight: () => <HeaderHomeButton navigation={navigation} />
+                        })} />
+                        <Stack.Screen name="DepositMoney" component={DepositMoney} options={({ navigation }) => ({
+                            headerTitle: 'Banks, Mitras & PO',
+                            headerRight: () => <HeaderHomeButton navigation={navigation} />
+                        })} />
+                        <Stack.Screen name="Tutorial" component={Tutorial} options={({ navigation }) => ({
+                            headerTitle: 'Tutorial Videos',
                             headerRight: () => <HeaderHomeButton navigation={navigation} />
                         })} />
                     </Stack.Navigator>
