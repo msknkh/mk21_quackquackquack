@@ -10,7 +10,8 @@ import axios from 'axios';
 import openMap from 'react-native-open-maps';
 
 _navigateMap = (lat, long) => {
-    openMap({ latitude: lat, longitude: long });
+    let q = lat + ',' + long
+    openMap({ latitude: lat, longitude: long, zoom: 40, query: q ,travelType: 'drive', navigate_mode: 'navigate' });
 }
 
 class RenderAtms extends React.Component {
@@ -57,9 +58,9 @@ class RenderAtms extends React.Component {
                 </View>
 
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
-                         this.getNearbyPlaces('Atms');
-
+                    <TouchableOpacity style={{ flex: 1 }} onPress={() => {
+                        alert('Would you like to rate the ATM?');
+                        _navigateMap(atm.item.latitude, atm.item.longitude);
                     }}>
                         <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
                     </TouchableOpacity>
