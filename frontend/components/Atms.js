@@ -1,11 +1,12 @@
 import React from 'react';
 import { Container, Text, Accordion, Icon } from 'native-base';
 import { ActivityIndicator, View, StyleSheet, AppState, TouchableOpacity, FlatList, Image } from 'react-native';
-import { Foundation, AntDesign, MaterialIcons } from '@expo/vector-icons'
+import { Foundation, AntDesign } from '@expo/vector-icons'
 import * as Location from 'expo-location';
 import * as IntentLauncher from 'expo-intent-launcher';
 import { SearchBar, Slider } from 'react-native-elements';
 import escapeRegExp from 'escape-string-regexp';
+import axios from 'axios';
 
 _renderContent = (atm) => {
     return (
@@ -18,35 +19,35 @@ _renderContent = (atm) => {
 _renderHeader = (atm, expanded) => {
     let icon = '../assets/ICICI.png';
     return (
-        <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', backgroundColor:'#479689ff' }}>
+        <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', backgroundColor: '#479689ff' }}>
 
-            <View style={{flex:4, height:60}}>
-              <View style={{flexDirection:'row', flex:1, height: 60, marginTop:'10%'}}>
-                <Image style={{ flex:3, height: '100%', width: '100%', resizeMode: 'contain', marginTop:'-5%' }} source={require(icon)} />
-                <View style={{flex:5, marginTop:-13}}>
-                  <Text style={{flex:2, color:'white' }}>{atm.item.ban_name} ATM</Text>
-                  <Text style={{flex:1, fontSize:10,  marginTop:-45, color:'white' }}>{atm.item.Address}</Text>
+            <View style={{ flex: 4, height: 60 }}>
+                <View style={{ flexDirection: 'row', flex: 1, height: 60, marginTop: '10%' }}>
+                    <Image style={{ flex: 3, height: '100%', width: '100%', resizeMode: 'contain', marginTop: '-5%' }} source={require(icon)} />
+                    <View style={{ flex: 5, marginTop: -13 }}>
+                        <Text style={{ flex: 2, color: 'white' }}>{atm.item.ban_name} ATM</Text>
+                        <Text style={{ flex: 1, fontSize: 10, marginTop: -45, color: 'white' }}>{atm.item.Address}</Text>
+                    </View>
                 </View>
-              </View>
             </View>
 
-            <View style={{flex:1.5}}>
-              <Text style={{textAlign:'center', fontSize:20, color:'white' }}> {atm.item.distance} Km </Text>
+            <View style={{ flex: 1.5 }}>
+                <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {atm.item.distance} Km </Text>
             </View>
 
-            <View style={{flex:2.5, flexDirection: 'row', justifyContent:'space-between'}}>
-              <TouchableOpacity style={{flex:1}}>
-                <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
-              </TouchableOpacity>
-              <TouchableOpacity style={{flex:1}}>
-                <Image style={{ height: 45, width: 45 }} source={require('../assets/callIcon.png')} />
-              </TouchableOpacity>
+            <View style={{ flex: 2.5, flexDirection: 'row', justifyContent: 'space-between' }}>
+                <TouchableOpacity style={{ flex: 1 }}>
+                    <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
+                </TouchableOpacity>
+                <TouchableOpacity style={{ flex: 1 }}>
+                    <Image style={{ height: 45, width: 45 }} source={require('../assets/callIcon.png')} />
+                </TouchableOpacity>
             </View>
 
             {
                 expanded
-                    ? <Icon style={{ fontSize: 30, marginRight: 10, color:'white' }} name="remove-circle" />
-                    : <Icon style={{ fontSize: 30, marginRight: 10, color:'white' }} name="add-circle" />
+                    ? <Icon style={{ fontSize: 30, marginRight: 10, color: 'white' }} name="remove-circle" />
+                    : <Icon style={{ fontSize: 30, marginRight: 10, color: 'white' }} name="add-circle" />
             }
         </View>
     );
@@ -117,7 +118,17 @@ class Atms extends React.Component {
             this.setState({
                 location: location
             });
-            // here will make api call to back end with lat and long
+            let lat = this.state.location.coords.latitude
+            let long = this.state.location.coords.longitude
+            let url = '/show/ATMS?latitude=' + lat + '&longitude=' + long
+            axios.get(url)
+                .then(function (response) {
+                    console.log(response);
+                    // set atms as response
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
         }
     }
 
@@ -160,11 +171,12 @@ class Atms extends React.Component {
         }
 
         if (this.state.atms) {
-            let atms = [{ id: 0, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi' }, { id: 1, bank_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI' },
-            { id: 2, bank_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara' },
-            { id: 3, bank_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis' },
-            { id: 4, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi' }]
+            // let atms = [{ id: 0, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi' }, { id: 1, bank_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI' },
+            // { id: 2, bank_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara' },
+            // { id: 3, bank_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis' },
+            // { id: 4, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi' }]
 
+            let atms = this.state.atms
             let showingAtms
             if (this.state.search) {
                 const match = new RegExp(escapeRegExp(this.state.search), 'i')
