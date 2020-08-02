@@ -141,9 +141,10 @@ class NearbyPlaces extends React.Component {
 
                                   }} source={require('../assets/nearbyBankMitra.png')} />
                                   <View style = {styles.buttonTextContainer}>
-                                    <Text style={styles.buttonText}></Text>
-                                    <Text style={styles.buttonText}>Open a new account</Text>
-                                    <Text style={styles.buttonText}></Text>
+                                    <Text style={styles.buttonText, {fontSize:10}}></Text>
+                                    <Text style={styles.buttonText}>Open a new</Text>
+                                    <Text style={styles.buttonText}>account</Text>
+                                    <Text style={styles.buttonText, {fontSize:10}}></Text>
                                   </View>
                               </View>
                             </TouchableOpacity>
@@ -159,9 +160,10 @@ class NearbyPlaces extends React.Component {
 
                                   }} source={require('../assets/nearbyPO.png')} />
                                   <View style = {styles.buttonTextContainer}>
-                                    <Text style={styles.buttonText}></Text>
-                                    <Text style={styles.buttonText}>Know more about schemes</Text>
-                                    <Text style={styles.buttonText}></Text>
+                                    <Text style={styles.buttonText, {fontSize:10}}></Text>
+                                    <Text style={styles.buttonText}>Know more about</Text>
+                                    <Text style={styles.buttonText}>schemes</Text>
+                                    <Text style={styles.buttonText, {fontSize:10}}></Text>
                                   </View>
                               </View>
                             </TouchableOpacity>
