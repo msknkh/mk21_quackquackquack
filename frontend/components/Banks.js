@@ -25,6 +25,8 @@ _navigateMap = (lat, long) => {
 }
 
 class Renderbanks extends React.Component {
+    navigated = false;
+
     _renderContent = (bank) => {
         return (
             <Text style={{ color: 'black' }}>
@@ -35,6 +37,7 @@ class Renderbanks extends React.Component {
     
     _renderHeader = (bank, expanded) => {
         let icon = '../assets/ICICI.png';
+
         return (
             <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', backgroundColor: '#479689ff' }}>
     
@@ -54,7 +57,7 @@ class Renderbanks extends React.Component {
     
                 <View style={{ flex: 2.5, flexDirection: 'row', justifyContent: 'space-between' }}>
                     <TouchableOpacity style={{ flex: 1 }} onPress={ () => {
-                         alert('Would you like to rate the bank?');
+                        this.navigated = true;
                         _navigateMap(bank.item.lat, bank.item.long);   
                     }}>
                         <Image style={{ height: 45, width: 45 }} source={require('../assets/googleMapsLogo.png')} />
@@ -87,18 +90,29 @@ class Renderbanks extends React.Component {
         );
     }
 
+    getNearbyPlaces = async (ScreenName) => {
+        this.props.self.props.navigation.navigate(ScreenName);
+    }
+
     render() {
         return (
+            <View>
             <FlatList data={this.props.banks} renderItem={this.renderbank} />
+            <View>
+            {
+                this.navigated
+                ? <TouchableOpacity style={styles.button} onPress={
+                    () => {
+                        this.getNearbyPlaces('Feedback');
+                    }}              
+                > <Text> Rate the bank? </Text></TouchableOpacity>
+                : <View></View>     
+            }
+            </View>
+            </View>
         );
     }
 }
-
-// Renderbanks = ({ banks }) => {
-//     return (
-//         <FlatList data={banks} renderItem={renderbank} />
-//     );
-// }
 
 class Banks extends React.Component {
     constructor(props) {
@@ -204,6 +218,7 @@ class Banks extends React.Component {
             else {
                 showingbanks = banks.filter(bank => (bank.distance <= this.state.sliderValue))
             }
+            self = this;
 
             return (
                 <Container>
@@ -223,7 +238,7 @@ class Banks extends React.Component {
                             {
                                 showingbanks.length > 0 ?
                                     <View>
-                                        <Renderbanks banks={showingbanks} />
+                                        <Renderbanks banks={showingbanks} self={self} />
                                     </View>
                                     :
                                     <View style={styles.center}>
