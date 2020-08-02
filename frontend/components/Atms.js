@@ -23,7 +23,7 @@ class RenderAtms extends React.Component {
             modalAskForFeedback: false,
             modalFeedback: false,
             atmId: null,
-            feedback_rating: null,
+            feedback_rating: 0,
             feedback_text: null,
             feedback_check: false
         };
@@ -89,9 +89,26 @@ class RenderAtms extends React.Component {
         let rating = this.state.feedback_rating
         let nonfunctional = this.state.feedback_check
         let text = this.state.feedback_text
+        let atmId = this.state.atmId
+        let url = ''
+        axios.post(url, {
+            rating: rating,
+            nonfunctional: nonfunctional,
+            feedback: text
+        })
+            .then(function (res) {
+                console.log(res)
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
 
-
-
+        this.setState({
+            feedback_rating: 0,
+            feedback_check: false,
+            feedback_text: null,
+            atmID: null
+        })
 
     }
 
@@ -174,7 +191,8 @@ class Atms extends React.Component {
             appState: AppState.currentState,
             atms: null,
             search: '',
-            sliderValue: 2
+            sliderValue: 2,
+            submitRequestModal: false
         }
     }
 
@@ -236,10 +254,30 @@ class Atms extends React.Component {
     }
 
     requestATM = () => {
+        this.setState({
+            submitRequestModal: true
+        })
         let latitude = this.state.location.coords.latitude
         let longitude = this.state.location.coords.longitude
         let distance = this.state.sliderValue
-
+        let url = ''
+        axios.post(url, {
+            latitude: latitude,
+            longitude: longitude,
+            distance: distance
+        })
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    submitRequestModal: false
+                })
+            })
+            .catch(error => {
+                console.log(error)
+                this.setState({
+                    submitRequestModal: false
+                })
+            })
     }
 
     render() {
@@ -284,6 +322,17 @@ class Atms extends React.Component {
 
             return (
                 <Container>
+                    <Modal
+                        animationType="fade"
+                        transparent={true}
+                        visible={this.state.submitRequestModal}>
+                        <View style={styles.centeredView}>
+                            <View style={styles.modalView}>
+                                <ActivityIndicator size='large' color='#302ea2' />
+                                <Text>Submitting Your Request</Text>
+                            </View>
+                        </View>
+                    </Modal>
                     <View style={{ flex: 1 }}>
                         <View style={{ flex: 1, justifyContent: 'center' }}>
                             <SearchBar platform='default' lightTheme round placeholder='Search ATM by name' value={this.state.search} onChangeText={this.updateSearch} />
