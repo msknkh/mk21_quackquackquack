@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import { StyleSheet, View} from 'react-native';
+import { StyleSheet, ScrollView, Icon, View, TouchableOpacity, Image, Modal, AppState} from 'react-native';
 import Accordian from './Accordian'
 import {Container, Text} from 'native-base';
 import { WebView } from "react-native-webview";
+import * as WebBrowser from 'expo-web-browser';
 
 
 class StandUp extends React.Component{
@@ -51,11 +52,33 @@ class StandUp extends React.Component{
 
     render() {
       return (
-        <View style={styles.container}>
-          { this.renderAccordians() }
+        <View style={styles.content}>
+            <View style={{ flex: 0.2, justifyContent:'center' }}>
+                <View style={[styles.row, { justifyContent: 'space-around' }]}>
+                    <View style={{ flex: 2, justifyContent: 'center' }}>
+                        <Image style={styles.img} source={require('../assets/moneyMitra.png')} />
+                    </View>
+                    <View style={{ flex: 7.4, justifyContent: 'center' }}>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={[styles.headText, { color: '#000', marginBottom: '1%' }]}>Here are some FAQs for the policy {'\n'}Click on below buttons to know more:</Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+            <ScrollView style={{ flex: 4, marginTop:'2%' }}>
+              <TouchableOpacity style={styles.button} onPress={() => {this._handlePressButtonAsync('http://www.standupmitra.in/')}}><Text style={styles.buttonText}> More info: Official Website </Text></TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={() => {this._handlePressButtonAsync('http://www.udaymimitra.in/')}}><Text style={styles.buttonText}> More info: Apply Online </Text></TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={() => {this.props.navigation.navigate('Banks')}}><Text style={styles.buttonText}> More info: Nearby Banks </Text></TouchableOpacity>
+              { this.renderAccordians() }
+            </ScrollView>
         </View>
       );
     }
+
+    _handlePressButtonAsync = async (link) => {
+      let result = await WebBrowser.openBrowserAsync(link);
+      this.setState({ result });
+    };
 
     renderAccordians=()=> {
       const items = [];
@@ -68,7 +91,8 @@ class StandUp extends React.Component{
           );
       }
       return items;
-  }
+    }
+
 }
 
 const styles = StyleSheet.create({
@@ -77,7 +101,48 @@ const styles = StyleSheet.create({
    paddingTop:100,
    backgroundColor: '#fff',
 
-  }
+ },
+ content: {
+     flex: 1,
+     backgroundColor: '#fff',
+ },
+ row: {
+     flex: 1,
+     flexDirection: 'row',
+ },
+ headText: {
+     fontSize: 20,
+     fontWeight: 'bold',
+     textAlign: 'left'
+ },
+ img: {
+     marginLeft: 5,
+     resizeMode: 'stretch',
+     height: '80%',
+     width: '100%'
+ },
+ button: {
+     flexDirection: 'row',
+     justifyContent:'center',
+     height:56,
+
+     alignItems:'center',
+
+     margin:'1%',
+     marginBottom:'0%',
+     borderRadius: 10,
+
+     backgroundColor: '#302ea2',
+
+
+ },
+ buttonText: {
+     color: "#fff",
+     fontSize: 20,
+     textAlign: 'center',
+     fontWeight: 'bold',
+ },
+
 });
 
 export default StandUp;

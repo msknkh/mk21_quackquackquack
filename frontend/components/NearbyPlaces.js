@@ -4,9 +4,8 @@ import { Container, Text } from 'native-base';
 import * as Location from 'expo-location';
 import * as IntentLauncher from 'expo-intent-launcher';
 import * as Speech from 'expo-speech';
-
-
 import i18n from 'i18n-js';
+
 
 class NearbyPlaces extends React.Component {
 
@@ -97,14 +96,15 @@ class NearbyPlaces extends React.Component {
                                     <Text style={[styles.headText, { color: '#000', marginBottom: '1%' }]} onPress = {() => {
                                       Speech.speak(`Which financial touchpoint are you looking for?`);
                                     }}>{i18n.t("Which financial touchpoint are you looking for?")}</Text>
-                                
+
                               </View>
                             </View>
                         </View>
                     </View>
                     <View style={{ flex: 4.5, marginBottom: 10 }}>
 
-                        <TouchableOpacity onPress={() => {Speech.speak(`You'll now get a list for the ATMs near you`); this.getNearbyPlaces('Atms')}} style={[styles.button, { backgroundColor: '#479689' }]}>
+
+                            <TouchableOpacity onPress={() => {Speech.speak(i18n.t("You'll now get a list for the ATMs near you")); this.getNearbyPlaces('Atms')}} style={[styles.button, { backgroundColor: '#479689' }]}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Image style={{
                                         marginLeft: '3%',
@@ -121,7 +121,7 @@ class NearbyPlaces extends React.Component {
                             </View>
 
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => {Speech.speak(`You'll now get a list for the Banks near you`); this.getNearbyPlaces('Banks')}} style={[styles.button, { backgroundColor: '#9f50b0' }]}>
+                            <TouchableOpacity onPress={() => {Speech.speak(i18n.t(`You'll now get a list for the Banks near you`)); this.getNearbyPlaces('Banks')}} style={[styles.button, { backgroundColor: '#9f50b0' }]}>
                               <View style={{ flexDirection: 'row' }}>
                                   <Image style={{
                                       marginLeft: '3%',
@@ -141,8 +141,7 @@ class NearbyPlaces extends React.Component {
                         </TouchableOpacity>
 
 
-
-                            <TouchableOpacity onPress={() => {Speech.speak(`You'll now get a list for the Bank Mitras near you`); this.getNearbyPlaces('BankMitras')}} style={[styles.button, { backgroundColor: '#2295f3' }]}>
+                            <TouchableOpacity onPress={() => {Speech.speak(i18n.t(`You'll now get a list for the Bank Mitras near you`)); this.getNearbyPlaces('BankMitras')}} style={[styles.button, { backgroundColor: '#2295f3' }]}>
                               <View style={{ flexDirection: 'row' }}>
                                   <Image style={{
                                       marginLeft: '3%',
@@ -160,7 +159,8 @@ class NearbyPlaces extends React.Component {
                             </View>
                         </TouchableOpacity>
 
-                            <TouchableOpacity onPress={() => {Speech.speak(`You'll now get a list for the Post Offices near you`); this.getNearbyPlaces('PostOffices')}} style={[styles.button, { backgroundColor: '#302ea2' }]}>
+
+                            <TouchableOpacity onPress={() => {Speech.speak(i18n.t(`You'll now get a list for the Post Offices near you`)); this.getNearbyPlaces('PostOffices')}} style={[styles.button, { backgroundColor: '#302ea2' }]}>
                               <View style={{ flexDirection: 'row' }}>
                                   <Image style={{
                                       marginLeft: '3%',
@@ -180,7 +180,7 @@ class NearbyPlaces extends React.Component {
                         </TouchableOpacity>
 
 
-                            <TouchableOpacity onPress={() => {Speech.speak(`You'll now get a list for the CSCs near you`); this.getNearbyPlaces('CSCs')}} style={[styles.button, { backgroundColor: '#ffa726', marginRight: 10 }]}>
+                            <TouchableOpacity onPress={() => {Speech.speak(i18n.t(`You'll now get a list for the CSCs near you`)); this.getNearbyPlaces('CSCs')}} style={[styles.button, { backgroundColor: '#ffa726', marginRight: 10 }]}>
                               <View style={{ flexDirection: 'row' }}>
                                   <Image style={{
                                       marginLeft: '3%',

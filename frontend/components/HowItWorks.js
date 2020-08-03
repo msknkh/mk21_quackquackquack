@@ -1,8 +1,11 @@
 import React from 'react';
-import { StyleSheet, Icon, View, TouchableOpacity, Image, Modal, AppState } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Image, Modal, AppState } from 'react-native';
 import { Container, Text } from 'native-base';
 import * as Location from 'expo-location';
 import * as IntentLauncher from 'expo-intent-launcher';
+import * as Speech from 'expo-speech';
+import i18n from 'i18n-js';
+
 
 class NearbyPlaces extends React.Component {
 
@@ -96,7 +99,7 @@ class NearbyPlaces extends React.Component {
                     </View>
                     <View style={{ flex: 4.5, marginBottom:10 }}>
 
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('WithdrawMoney')} style={[styles.button, { backgroundColor: '#479689' }]}>
+                            <TouchableOpacity onPress={() => {Speech.speak(i18n.t(`Withdraw Money`));this.getNearbyPlaces('WithdrawMoney')}} style={[styles.button, { backgroundColor: '#479689' }]}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Image style={{
                                         marginLeft: '3%',
@@ -107,7 +110,7 @@ class NearbyPlaces extends React.Component {
                                     }} source={require('../assets/nearbyATM.png')} />
                                     <View style = {styles.buttonTextContainer}>
                                       <Text style={styles.buttonText}></Text>
-                                      <Text style={styles.buttonText}>Withdraw Money</Text>
+                                      <Text style={styles.buttonText}>{i18n.t(`Withdraw Money`)}</Text>
                                       <Text style={styles.buttonText}></Text>
                                     </View>
                                 </View>
