@@ -11,7 +11,7 @@ import axios from 'axios';
 _renderContent = (atm) => {
     return (
         <Text style={{ color: 'black' }}>
-            {atm.item.Address}
+            {atm.item.address}
         </Text>
     );
 }
@@ -25,14 +25,14 @@ _renderHeader = (atm, expanded) => {
                 <View style={{ flexDirection: 'row', flex: 1, height: 60, marginTop: '10%' }}>
                     <Image style={{ flex: 3, height: '100%', width: '100%', resizeMode: 'contain', marginTop: '-5%' }} source={require(icon)} />
                     <View style={{ flex: 5, marginTop: -13 }}>
-                        <Text style={{ flex: 2, color: 'white' }}>{atm.item.ban_name} ATM</Text>
-                        <Text style={{ flex: 1, fontSize: 10, marginTop: -45, color: 'white' }}>{atm.item.Address}</Text>
+                        <Text style={{ flex: 2, color: 'white' }}>{atm.item.bank_name} ATM</Text>
+                        <Text style={{ flex: 1, fontSize: 10, marginTop: -45, color: 'white' }}>{atm.item.address}</Text>
                     </View>
                 </View>
             </View>
 
             <View style={{ flex: 1.5 }}>
-                <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {atm.item.distance} Km </Text>
+                <Text style={{ textAlign: 'center', fontSize: 20, color: 'white' }}> {atm.item.user_distance} Km </Text>
             </View>
 
             <View style={{ flex: 2.5, flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -118,10 +118,12 @@ class Atms extends React.Component {
             this.setState({
                 location: location
             });
-            let lat = this.state.location.coords.latitude
-            let long = this.state.location.coords.longitude
-            let url = '/show/ATMS?latitude=' + lat + '&longitude=' + long
-            axios.get(url)
+            /*let lat = this.state.location.coords.latitude
+            let long = this.state.location.coords.longitude*/
+            let lat = 28.360953
+            let long = 77.330029
+            let url = 'http://127.0.0.1:5000/show/ATM?latitude=' + lat + '&longitude=' + long
+            axios.get('http://192.168.1.8:5000/show/ATM?latitude=28.360953&longitude=77.330029', )
                 .then(function (response) {
                     console.log(response);
                     // set atms as response
@@ -171,19 +173,16 @@ class Atms extends React.Component {
         }
 
         if (this.state.atms) {
-            // let atms = [{ id: 0, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'sbi' }, { id: 1, bank_name: "ICICI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 2, img: 'ICICI' },
-            // { id: 2, bank_name: "CANARA", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 3, img: 'canara' },
-            // { id: 3, bank_name: "AXIS", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'axis' },
-            // { id: 4, bank_name: "SBI", Address: "Shop No 1, street 1, Lorem Ipsum", distance: 4, img: 'sbi' }]
+            let atms = []
 
-            let atms = this.state.atms
+            //let atms = this.state.atms
             let showingAtms
             if (this.state.search) {
                 const match = new RegExp(escapeRegExp(this.state.search), 'i')
-                showingAtms = atms.filter((atm) => match.test(atm.bank_name) && (atm.distance < this.state.sliderValue))
+                showingAtms = atms.filter((atm) => match.test(atm.bank_name) && (atm.user_distance <= this.state.sliderValue))
             }
             else {
-                showingAtms = atms.filter(atm => (atm.distance <= this.state.sliderValue))
+                showingAtms = atms.filter(atm => (atm.user_distance <= this.state.sliderValue))
             }
 
             return (
