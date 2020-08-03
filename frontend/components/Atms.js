@@ -24,7 +24,7 @@ class RenderAtms extends React.Component {
             modalFeedback: false,
             atmId: null,
             feedback_rating: 0,
-            feedback_text: null,
+            feedback_text: '',
             feedback_check: false
         };
     }
@@ -90,11 +90,13 @@ class RenderAtms extends React.Component {
         let nonfunctional = this.state.feedback_check
         let text = this.state.feedback_text
         let atmId = this.state.atmId
-        let url = ''
+        let url = 'http://neo2207.pythonanywhere.com/update_rating'
         axios.post(url, {
             rating: rating,
             nonfunctional: nonfunctional,
-            feedback: text
+            feedback: text,
+            name: "Atm",
+            id: atmId
         })
             .then(function (res) {
                 console.log(res)
@@ -230,7 +232,7 @@ class Atms extends React.Component {
             this.setState({
                 location: location
             });
-            let url1 = 'http://neo2207.pythonanywhere.com/show/ATM?latitude=28.360953&longitude=77.330029'
+            let url1 = 'http://neo2207.pythonanywhere.com/show/atms?latitude=28.360953&longitude=77.330029'
 
             axios.get(url1)
                 .then(res => {
@@ -260,7 +262,7 @@ class Atms extends React.Component {
         let latitude = this.state.location.coords.latitude
         let longitude = this.state.location.coords.longitude
         let distance = this.state.sliderValue
-        let url = ''
+        let url = 'http://neo2207.pythonanywhere.com/AtmRequest'
         axios.post(url, {
             latitude: latitude,
             longitude: longitude,
