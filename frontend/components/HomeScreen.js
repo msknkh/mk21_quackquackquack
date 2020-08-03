@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import { Container, Text } from 'native-base';
-
+import * as Speech from 'expo-speech';
 import i18n from 'i18n-js';
+
 
 class HomeScreen extends React.Component {
     render() {
@@ -13,22 +14,24 @@ class HomeScreen extends React.Component {
                         <View style={[styles.row, { justifyContent: 'space-around' }]}>
 
                             <ImageBackground source={require('../assets/homeBG.png')} style={styles.imgBack}>
-                              <Text style={styles.headText}>{i18n.t("Welcome to the Jan Dhan Darshak App")}</Text>
+                              <Text style={styles.headText} onPress = {()=> {
+                                Speech.speak(i18n.t("Welcome to the Jan Dhan Darshak App"));
+                              }}>{i18n.t("Welcome to the Jan Dhan Darshak App")}</Text>
                             </ImageBackground>
                         </View>
                     </View>
                     <View style={{ flex: 1, marginTop: '5%' }}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('NearbyPlaces')} style={[styles.button, { backgroundColor: '#479689' }]}>
+                        <TouchableOpacity onPress={() => {Speech.speak(i18n.t("Near Me")); this.props.navigation.navigate('NearbyPlaces')}} style={[styles.button, { backgroundColor: '#479689' }]}>
                           <Image style={styles.img} source={require('../assets/nearmeB1.png')} />
                           <Text style={styles.buttonText}>{i18n.t("Near Me")}</Text>
                           <Image style={styles.img} source={require('../assets/nearmeB2.png')} />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('HowItWorks')} style={[styles.button, { backgroundColor: '#9f50b0' }]}>
+                        <TouchableOpacity onPress={() => {Speech.speak(i18n.t("How it works?"));this.props.navigation.navigate('HowItWorks')}} style={[styles.button, { backgroundColor: '#9f50b0' }]}>
                           <Image style={styles.img} source={require('../assets/howItWorksB1.png')} />
                           <Text style={styles.buttonText}>{i18n.t("How it works?")}</Text>
                           <Image style={styles.img} source={require('../assets/howItWorksB2.png')} />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('MoneyMitra')} style={[styles.button, { backgroundColor: '#2295f3' }]}>
+                        <TouchableOpacity onPress={() => {Speech.speak(i18n.t("Policy Library"));this.props.navigation.navigate('MoneyMitra')}} style={[styles.button, { backgroundColor: '#2295f3' }]}>
                           <Image style={styles.img} source={require('../assets/policyLibraryB1.png')} />
                           <Text style={styles.buttonText}>{i18n.t("Policy Library")}</Text>
                           <Image style={styles.img} source={require('../assets/policyLibraryB2.png')} />
