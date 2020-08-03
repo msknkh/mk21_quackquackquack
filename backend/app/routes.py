@@ -11,27 +11,27 @@ main = Blueprint('main', __name__)
 
 class AtmSchema(ma.Schema):
   class Meta:
-    fields = ('id', 'atm_code', 'bank_name', 'address', 'city', 'pincode', 'district', 'state', 'rating', 'total_rating', 
+    fields = ('id', 'atm_code', 'bank_name', 'address', 'city', 'pincode', 'district', 'state', 'rating', 'total_rating',
              'latitude', 'longitude', 'non_functional_cnt', 'img')
 
 class BankSchema(ma.Schema):
   class Meta:
-    fields = ('id', 'ifsc_code', 'bank_name', 'mobile_no', 'address', 'city', 'pincode', 'district', 'state', 'rating', 'total_rating', 
+    fields = ('id', 'ifsc_code', 'bank_name', 'mobile_no', 'address', 'city', 'pincode', 'district', 'state', 'rating', 'total_rating',
              'latitude', 'longitude', 'open_time', 'close_time', 'img')
 
 class BankMitraSchema(ma.Schema):
   class Meta:
-    fields = ('id', 'bank_name', 'bank_mitra_code', 'bank_mitra_name', 'mobile_no','address', 'city', 'pincode', 'district', 'state', 'rating', 'total_rating', 
+    fields = ('id', 'bank_name', 'bank_mitra_code', 'bank_mitra_name', 'mobile_no','address', 'city', 'pincode', 'district', 'state', 'rating', 'total_rating',
              'latitude', 'longitude', 'img')
 
 class PostOfficeSchema(ma.Schema):
   class Meta:
-    fields = ('id', 'post_office_name', 'mobile_no', 'address', 'city', 'pincode', 'district', 'state', 'rating', 'total_rating', 
+    fields = ('id', 'post_office_name', 'mobile_no', 'address', 'city', 'pincode', 'district', 'state', 'rating', 'total_rating',
              'latitude', 'longitude', 'img')
 
 class CSCSchema(ma.Schema):
   class Meta:
-    fields = ('id', 'csc_id', 'csc_name', 'address', 'city', 'pincode', 'district', 'state', 'rating', 'total_rating', 
+    fields = ('id', 'csc_id', 'csc_name', 'address', 'city', 'pincode', 'district', 'state', 'rating', 'total_rating',
              'latitude', 'longitude', 'img')
 
 class AtmRequestSchema(ma.Schema):
@@ -73,11 +73,62 @@ def fin_touch_pt_disp(touch_pt_name):
     res = json.loads(data)
     print(type(res))
     json_list = []
-    
+
     for key, value in res.items():
         json_list.append(value)
 
-    return jsonify(json_list)    
+    return jsonify(json_list)
+
+@main.route('/withdraw', methods=['GET'])
+def withdraw():
+    lat=request.args.get('latitude')
+    longi=request.args.get('longitude')
+    df_atms = function.nearby(lat,longi,"atms")
+    df_banks =  function.nearby(lat,longi,"banks")
+    df_bankmitras = function.nearby(lat,longi,"bankmitras")
+    json_list = []
+
+    data = df_atms.to_json(orient="index")
+    res = json.loads(data)
+
+    for key, value in res.items():
+        json_list.append(value)
+
+    data = df_banks.to_json(orient="index")
+    res = json.loads(data)
+
+    for key, value in res.items():
+        json_list.append(value)
+
+    data = df_bankmitras.to_json(orient="index")
+    res = json.loads(data)
+
+    for key, value in res.items():
+        json_list.append(value)
+
+    return jsonify(json_list)
+
+@main.route('/deposit', methods=['GET'])
+def deposit():
+    lat=request.args.get('latitude')
+    longi=request.args.get('longitude')
+    df_bankmitras = function.nearby(lat,longi,"bankmitras")
+    df_po = function.nearby(lat,longi,"postoffices")
+    json_list = []
+
+    data = df_bankmitras.to_json(orient="index")
+    res = json.loads(data)
+
+    for key, value in res.items():
+        json_list.append(value)
+
+    data = df_po.to_json(orient="index")
+    res = json.loads(data)
+
+    for key, value in res.items():
+        json_list.append(value)
+
+    return jsonify(json_list)
 
 @main.route('/update_rating', methods=['POST'])
 def update_rating():
@@ -106,7 +157,7 @@ def update_rating():
     new_rating = (data.total_rating * data.rating + rating)/(data.total_rating + 1)
     data.total_rating = data.total_rating + 1
     data.rating = new_rating
-    
+
     db.session.commit()
     return "Updated"
 
@@ -138,20 +189,25 @@ def addData():
 
 @main.route('/<touch_pt_name>', methods=['GET'])
 def getData(touch_pt_name):
-    if(touch_pt_name == 'Atms'):
+     if(touch_pt_name == 'Atms'):
       atm_list = Atms.query.all()
       result = atms_schema.dump(atm_list)
-    elif(touch_pt_name == 'Banks'):
+      return jsonify(result)
+     elif(touch_pt_name == 'Banks'):
       bank_list = Banks.query.all()
       result = banks_schema.dump(bank_list)
-    elif(touch_pt_name == 'BankMitras'):
+      return jsonify(result)
+     elif(touch_pt_name == 'BankMitras'):
       bm_list = BankMitras.query.all()
       result = bankmitras_schema.dump(bm_list)
-    elif(touch_pt_name == 'PostOffices'):
+      return jsonify(result)
+     elif(touch_pt_name == 'PostOffices'):
       po_list = PostOffices.query.all()
       result = postoffices_schema.dump(po_list)
-    elif(touch_pt_name == 'CSCs'):
+      return jsonify(result)
+     elif(touch_pt_name == 'CSCs'):
       csc_list = CSCs.query.all()
       result = cscs_schema.dump(csc_list)
-    return jsonify(result)
+      return jsonify(result)
+   
 
