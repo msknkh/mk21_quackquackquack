@@ -1,0 +1,89 @@
+Policy Type,Policy Name,Policy Content Header,Content in this Header,Reroute to
+Loan,Pradhan Mantri Mudra Yojana (MUDRA / PMMY),What is the Loan amount?,"Up to Rs. 50,000 (under sub-scheme ‘Shishu’)
+between Rs. 50,000 to 5.0 Lakhs (under sub-scheme ‘Kishore’)
+between 5.0 Lakhs to 10.0 Lakhs (under sub-scheme ‘Tarun’)
+
+(The interventions have been named 'Shishu', 'Kishore' and 'Tarun' to signify the stage of growth/development and funding needs of the beneficiary)",NULL
+Loan,Pradhan Mantri Mudra Yojana (MUDRA / PMMY),Who are the beneficiaries?,micro units & entrepreneur,NULL
+Loan,Pradhan Mantri Mudra Yojana (MUDRA / PMMY),Is collateral needed?,Not needed,NULL
+Loan,Pradhan Mantri Mudra Yojana (MUDRA / PMMY),Why was the scheme launched?,"These measures are aimed at increasing the confidence of young, educated or skilled workers who would now be able to aspire to become first-generation entrepreneurs; existing small businesses, too, will be able to expand their activities.",NULL
+Loan,Pradhan Mantri Mudra Yojana (MUDRA / PMMY),Who launched the scheme?,"Pradhan Mantri MUDRA Yojana (PMMY) is a scheme launched by the Hon’ble Prime Minister on April 8, 2015.",NULL
+Loan,Pradhan Mantri Mudra Yojana (MUDRA / PMMY),The policy's history,"As on 31.03.2019, Rs. 3,21,722 crores sanctioned (Rs. 142,345 cr. - Shishu, Rs. 104,386 cr. Kishore and Rs. 74,991 cr. - Tarun category), in 5.99 crores accounts.",NULL
+Loan,Pradhan Mantri Mudra Yojana (MUDRA / PMMY),More information,"To know more: http://www.mudramitra.in/
+Apply at: https://www.udyamimitra.in/
+Or contact your nearest Bank Branch",Nearby B
+Loan,Stand Up India,What is the Loan amount?,between Rs.10 lakh and Rs.1 crore,NULL
+Loan,Stand Up India,Who are the beneficiaries?,"women, SC & ST category i.e those sections of the population facing significant hurdles due to lack of advice/mentorship as well as inadequate and delayed credit - for setting up greenfield enterprises (manufacturing, services or the trading sector)",NULL
+Loan,Stand Up India,Is collateral needed?,Not needed,NULL
+Loan,Stand Up India,Why was the scheme launched?,to promote entrepreneurship amongst beneficiaries. The scheme intends to leverage the institutional credit structure to reach out to these underserved sectors of the population in starting greenfield enterprises. It caters to both ready and trainee borrowers.,NULL
+Loan,Stand Up India,Who launched the scheme?,"Government of India launched the Stand Up India scheme on 5th April, 2016.",NULL
+Loan,Stand Up India,The policy's history,"As on 31.03.2019, Rs. 16,085 crore has been sanctioned in 72,983 accounts (59,429 – women, 3,103-ST and 10,451 – SC).",NULL
+Loan,Stand Up India,More information,"At least one SC/ST & one woman borrower per branch
+
+Stand Up India Scheme also extends handholding support to the potential borrowers. 
+Applications under the scheme can also be made online on the dedicated Stand Up India portal(www.standupmitra.in)
+
+Apply at: https://www.udyamimitra.in/
+Or contact your nearest Bank Branch",Nearby B
+Insurance,Pradhan Mantri Suraksha Bima Yojana (PMSBY),What is the scheme?,It is an Accident Insurance scheme established by the Government of India to provide accident insurance cover to Indians. It focuses on uplifting the under-privileged and workers in the unorganised sector. This scheme provides death and disability cover due to an accident.,NULL
+Insurance,Pradhan Mantri Suraksha Bima Yojana (PMSBY),Who is the scheme for? Are you eligible for it?,"People over the age of 18 years and under the age of 70 years
+Should have a bank account who give their consent to join/enable auto-debit",NULL
+Insurance,Pradhan Mantri Suraksha Bima Yojana (PMSBY),How much is the risk cover?,"Risk cover for one year period (from 1st June to 31st May) and is renewable, 
+Rs. 2 Lakh in case of accidental death of the insured & for certain permanent disabilities
+Rs 1 Lakh for, partial but permanent disability",NULL
+Insurance,Pradhan Mantri Suraksha Bima Yojana (PMSBY),What premiums will you have to pay?,"An yearly premium of Rs. 12 Only.
+You need to provide ""auto-debit"" instructions to the concerned Bank or Post Office",NULL
+Insurance,Pradhan Mantri Suraksha Bima Yojana (PMSBY),Who is implementing the scheme?,"This scheme is offered and administered by Public Sector General Insurance Companies (PSGIC) and other General Insurance companies in partnership with Banks and Post Offices.
+
+The Banks and Post Offices can engage the insurance company of their choice for providing this scheme to the common public.",NULL
+Insurance,Pradhan Mantri Suraksha Bima Yojana (PMSBY),History of the policy,Established by the Government of India,NULL
+Insurance,Pradhan Mantri Suraksha Bima Yojana (PMSBY),More information,"Read more about the policy at: https://financialservices.gov.in/insurance-divisions/Government-Sponsored-Socially-Oriented-Insurance-Schemes/Pradhan-Mantri-Suraksha-Bima-Yojana(PMSBY)
+You can apply for the schemes at your nearest Post Office or Authorized bank branches","Nearby PO
+Nearby B & PO"
+Insurance,Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY),What is the scheme?,It is a Term Life Insurance scheme established by the Government of India to provide life insurance cover to Indians. It focuses on securing the under-privileged and workers in the unorganised sector. ,NULL
+Insurance,Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY),Who is the scheme for? Are you eligible for it?,"People over the age of 18 years and under the age of 50 years
+Should have a bank account who give their consent to join/enable auto-debit",NULL
+Insurance,Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY),How much is the risk cover?,"Risk cover for one year period (from 1st June to 31st May) and is renewable, 
+Rs. 2 Lakh in case of death of the insured due to any reason during the policy coverage period",NULL
+Insurance,Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY),What premiums will you have to pay?,"An yearly premium of Rs. 330 Only.
+You need to provide ""auto-debit"" instructions to the concerned Bank or Post Office",NULL
+Insurance,Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY),Who is implementing the scheme?,"As on 31st March, 2019, cumulative gross enrollment reported by banks subject to verification of eligibility, etc. is over 5.91 crore under PMJJBY. A total of 145763 claims were registered under PMJJBY of which 135212 have been disbursed.",NULL
+Insurance,Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY),History of the policy,Life Insurance Corporation and all other life insurers who are willing to offer the product on similar terms with necessary approvals and tie-up with banks for this purpose.,NULL
+Insurance,Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY),More information,"Read more about the policy at: https://financialservices.gov.in/insurance-divisions/Government-Sponsored-Socially-Oriented-Insurance-Schemes/Pradhan-Mantri-Jeevan-Jyoti-Bima-Yojana(PMJJBY)
+You can apply for the schemes at your nearest Post Office or Authorized bank branches","Nearby PO
+Nearby B & PO"
+Pension,Atal Pension Yojana (APY),What is the scheme?,APY is a retirement scheme for all Indian citizens. It was established by the Government of India to provide guaranteed monthly pension to all Indians after the age of 60 years.,NULL
+Pension,Atal Pension Yojana (APY),Who is the scheme for? Are you eligible for it?,For all Indian citizens over the age of 18 years and under the age of 40 years who have a Savings Bank (SB) Account with a bank or a post office (A new account can be opened),NULL
+Pension,Atal Pension Yojana (APY),How much pension will you get?,"Subscribers get a guaranteed minimum pension of 
+Rs. 1,000 per month <newline>
+Rs. 2,000 per month
+Rs. 3,000 per month
+Rs. 4,000 per month
+Rs. 5,000 per month
+starting at the age of 60 years
+
+When the subscriber dies, their spouse gets the pension and when they die too, the lumpsum is given to their nominee",NULL
+Pension,Atal Pension Yojana (APY),How much amount will you have to contribute?,"By the age of 60, the user should have lumpsum equal to:
+
+Rs. 1,70,000 (for monthly pension of Rs. 1,000)
+Rs. 3,40,000 (for monthly pension of Rs. 2,000)
+Rs. 5,10,000 (for monthly pension of Rs. 3,000)
+Rs. 6,80,000 (for monthly pension of Rs. 4,000)
+Rs. 8,50,000 (for monthly pension of Rs. 5,000)
+
+If the subscriber dies before age of 60, then their spouse can choose to continue or close the ",NULL
+Pension,Atal Pension Yojana (APY),Who is implementing the scheme?,APY is being implemented by the Government of India. It is regulated by PFRDA (Pension Fund Regulatory and Development Authority) through NPS (National Pension System) architecture,NULL
+Pension,Atal Pension Yojana (APY),History of the policy,"As on 31st March, 2019, a total of 149.53 lakh subscribers have been enrolled under APY with a total pension wealth of Rs. 6,860.30 crore.",NULL
+Pension,Atal Pension Yojana (APY),More information,"To see more information: https://www.npscra.nsdl.co.in/scheme-details.php
+You can apply for the schemes at your nearest Post Office or Authorized bank branches",Nearby B & PO
+Pension,Pradhan Mantri Vaya Vandana Yojana (PMVVY),What is the scheme?,"It is a guaranteed pension scheme. This scheme provides immediate pension. It means that if you deposit the money today, you will receive pension from next month onwards. Provides protection from future fall in their interest income due to the uncertain market conditions and social security during old age",NULL
+Pension,Pradhan Mantri Vaya Vandana Yojana (PMVVY),Who is the scheme for? Are you eligible for it?,"It is exclusively for senior citizens, i.e. people above the age of 60",NULL
+Pension,Pradhan Mantri Vaya Vandana Yojana (PMVVY),How much pension will you get?,(Calculator),NULL
+Pension,Pradhan Mantri Vaya Vandana Yojana (PMVVY),How much amount will you have to contribute?,(Calculator),NULL
+Pension,Pradhan Mantri Vaya Vandana Yojana (PMVVY),Who is implementing the scheme?,It is being implemented by the Life Insurance Corporation of India (LIC),NULL
+Pension,Pradhan Mantri Vaya Vandana Yojana (PMVVY),History of the policy,"In Budget 2018-19, extended up to 31st March, 2020
+The limit of maximum purchase price of Rs. 15 lakh per family (/ per senior citizen) 
+The maximum pension admissible under the scheme is now Rs.10,000/- per month
+",NULL
+Pension,Pradhan Mantri Vaya Vandana Yojana (PMVVY),More information,"To see more information: https://financialservices.gov.in/insurance-divisions/Government-Sponsored-Socially-Oriented-Insurance-Schemes/Pradhan-Mantri-Vaya-Vandana-Yojana(PMVVY)
+You can apply for the schemes from LIC office or LIC agents",NULL

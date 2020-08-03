@@ -1,0 +1,23 @@
+id,post_office_name,mobile_no,address,city,pincode,district,state,rating,total_rating,latitude,longitude
+0,Saraswati Vihar post office,7675755685,Saraswati Vihar,New Delhi,110034,Saraswati Vihar,Delhi,5,1,28.50525418,77.298992
+1,Naraina Enclave PO,2543652458,Naraina Enclave,New Delhi,110025,Naraina Enclave,Delhi,4,2,28.13211489,77.48544102
+2,Jan Dhan PO,4553576545,Rohini,New Delhi,117757,Rohini,Delhi,3,5,28.39357108,77.29587344
+3,"lorem, Nagar PO",6032428671,"628, gypsum, City",eetanagar,118419,F6,Andhra Pradesh,4.064657267,6,28.51107424,77.08795277
+4,"ipsum, City PO",5591867041,"630, gypsum, Nagar",Jaunpur,179558,G7,Maharashtra,3.238655062,6,28.44997352,77.41536968
+5,"gypsum, Nagar PO",9585232634,"364, boron, Road",Indirapur,393451,I9,Tamil Nadu,3.904767967,5,28.34579443,77.3370275
+6,"ipsum, City PO",8890974958,"727, lorem, City",eetanagar,885851,H8,Orissa,4.064282506,6,28.51166739,77.33916548
+7,"boron, City PO",4718415527,"291, gypsum, Nagar",Fasta,303837,D4,Tamil Nadu,3.921678809,4,28.1392398,77.13198436
+8,"lorem, Nagar PO",5710625174,"869, lorem, City",Hoogli,710439,F6,Haryana,4.730333907,6,28.57898912,77.47191124
+9,"ipsum, Nagar PO",7875464608,"693, lorem, Nagar",Indirapur,213024,A1,Orissa,4.1382247,5,28.145023,77.37087277
+10,"ipsum, City PO",3403524265,"274, boron, City",Bangalore,912375,D4,Andhra Pradesh,4.033631118,6,28.3739701,77.12020396
+11,"ipsum, City PO",7101548726,"567, lorem, City",Hoogli,474582,F6,Andhra Pradesh,4.890839313,5,28.28514801,77.4536181
+12,"gypsum, City PO",9786626001,"315, ipsum, City",Coimbatore,396383,G7,Orissa,4.615844654,6,28.31125683,77.35446134
+13,"ipsum, City PO",6838768051,"678, boron, Road",eetanagar,883335,F6,Maharashtra,3.892054964,4,28.44245093,77.23767857
+14,"gypsum, Nagar PO",8592005961,"756, lorem, Nagar",eetanagar,176178,B2,Haryana,4.025993593,6,28.1565209,77.5077334
+15,"boron, Road PO",4509798912,"569, ipsum, Nagar",eetanagar,890850,A1,Kerala,3.293002548,5,28.39659776,77.23364238
+16,"gypsum, Road PO",3406433751,"582, gypsum, Nagar",Indirapur,269447,H8,Tamil Nadu,3.782945639,4,28.3971691,77.56751584
+17,"lorem, Nagar PO",6528045619,"289, lorem, City",Bangalore,755132,B2,Karnataka,4.745911599,6,28.44462311,77.56348716
+18,"gypsum, Road PO",9942661876,"947, ipsum, Road",Fasta,266870,I9,Delhi,4.437917178,4,28.25396864,77.52281211
+19,"lorem, City PO",4457506752,"725, ipsum, Nagar",Gwalior,469594,E5,Telangana,4.466610314,4,28.3950528,77.0848894
+20,"boron, Road PO",3436448097,"534, ipsum, Nagar",eetanagar,955256,I9,Tamil Nadu,4.636973212,6,28.30902252,77.47909599
+21,"ipsum, Nagar PO",4272787393,"943, lorem, Nagar",Delhi,706391,I9,Maharashtra,4.297025524,4,28.18207963,77.54216108

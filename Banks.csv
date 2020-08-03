@@ -1,0 +1,12 @@
+id,ifsc_code,bank_name,mobile_no,address,city,pincode,district,state,rating,total_rating,latitude,longitude,open_time,close_time,img
+0,ABC11122233,ICICI Bank ,18601207777,"Sector 7, Sco 43, Nirmal Deep Building",Faridabad,121006,,Haryana,3.5,3,28.3623119,77.3107191,9:30,5:00 PM,ICICI
+1,ABC11122234,HDFC Bank,7573919585,"SCF 41, Sector 3, Ballabhgarh",Faridabad,121004,,Haryana,3.3,4,28.3507277,77.3334178,9:30,3:30 PM,hdfc
+2,ABC11122235,Syndicate Bank,,"1194, Sector 3",Faridabad,121004,,Haryana,4,3,28.3503795,77.332134,10:00,4:00 PM,syndicate
+3,ABC11122236,ICICI Bank ,9017667777,"21/5 Milestone, Mathura Road, Aggarwal Wood Industries",Faridabad,121004,,Haryana,3.6,5,"28.341709,77.3220403",,9:30,3:00 PM,ICICI
+4,ABC11122237,Bank of baroda,,"1185, Block D, NCB Colony, Sector 7",Faridabad,121006,,Haryana,3.4,3,"28.3609765,77.3278403",,,,bank of baroda
+5,ABC11122238,SBI,1292243200,"SCO-43, Huda Market, Sector 7a, Block E, Sector 7",Faridabad,121006,,Haryana,3.8,3,"28.3609765,77.3278403",,10:00,4:00 PM,sbi
+6,ABC11122239,SBI,1294316574,"SCF-50, Huda Market, Sector 3",Faridabad,121004,,Haryana,3.4,5,"28.3504509,77.3330462",,10:00,4:00 PM,sbi
+7,ABC11122240,OBC,,"B/O Sihi, 399-B, Sector 7, Sihi",Faridabad,121006,,Haryana,4.0,4,"28.3609765,77.3278403",,9:00,5:00 PM,obc
+8,ABC11122241,Union Bank of India,,"SCO 60, Huda Market, Sector 7a, Block E, Sector 7",Faridabad,121006,,Haryana,3.5,4,28.3609765,77.3278403,10:00,5:00 PM,ubi
+9,ABC11122242,Syndicate Bank,9899085838,"Scf 69 Bp, Huda Market, Sector 7a, Block E, Sector 7",Faridabad,121006,,Haryana,3.2,3,28.3609765,77.3278403,10:00,4:00 PM,syndicate
+10,ABC11122243,HDFC Bank,7573919585,"SN 3, Crown Cplx, New Ind Town",Faridabad,121001,,Haryana,4.2,5,28.381603,77.2948273,9:30,3:30 PM,hdfc
