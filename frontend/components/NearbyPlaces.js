@@ -121,15 +121,14 @@ class NearbyPlaces extends React.Component {
                             </View>
 
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => {Speech.speak(i18n.t(`You'll now get a list for the Banks near you`)); this.getNearbyPlaces('Banks')}} style={[styles.button, { backgroundColor: '#9f50b0' }]}>
+                            <TouchableOpacity onPress={() => {Speech.speak(i18n.t("You'll now get a list for the Banks near you")); this.getNearbyPlaces('Banks')}} style={[styles.button, { backgroundColor: '#9f50b0' }]}>
                               <View style={{ flexDirection: 'row' }}>
                                   <Image style={{
                                       marginLeft: '3%',
                                       flex: 2,
                                       height: '100%',
                                       width: '100%',
-
-
+                                      
 
                                 }} source={require('../assets/nearbyBanks.png')} />
                                 <View style={styles.buttonTextContainer}>

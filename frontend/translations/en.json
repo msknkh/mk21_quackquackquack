@@ -7,13 +7,20 @@
     "You Need to Enable Location Services":"You Need to Enable Location Services",
     "Which financial touchpoint are you looking for?":"Which financial touchpoint are you looking for?",
     "ATMs":"ATMs",
+    "Bank": "Bank",
     "Bank Branches":"Bank Branches",
     "Bank Mitras":"Bank Mitras",
     "Post Offices":"Post Offices",
     "Common Service":"Common Service",
+    "Centres": "Centres",
     "No banks within given range":"No banks within given range",
     "Km":"Km",
     "Open Settings":"Centres",
+    "Enable Location Services": "Enable Location Services",
     "You denied your location. You can fix this by visiting your settings and enabling location permissions for this app.":
-    "You denied your location. You can fix this by visiting your settings and enabling location permissions for this app."
+    "You denied your location. You can fix this by visiting your settings and enabling location permissions for this app.",
+    "You'll now get a list for the Banks near you" : "You'll now get a list for the banks near you",
+    "You'll now get a list for the ATMs near you" : "You'll now get a list for the ATMs near you",
+    "Withdraw Money": "Withdraw Money",
+    "Deposit Money": "Deposit Money"
 }

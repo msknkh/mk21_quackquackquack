@@ -99,7 +99,7 @@ class NearbyPlaces extends React.Component {
                     </View>
                     <View style={{ flex: 4.5, marginBottom:10 }}>
 
-                            <TouchableOpacity onPress={() => {Speech.speak(i18n.t(`Withdraw Money`));this.getNearbyPlaces('WithdrawMoney')}} style={[styles.button, { backgroundColor: '#479689' }]}>
+                            <TouchableOpacity onPress={() => {Speech.speak(i18n.t("Withdraw Money"));this.getNearbyPlaces('WithdrawMoney')}} style={[styles.button, { backgroundColor: '#479689' }]}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Image style={{
                                         marginLeft: '3%',
@@ -116,7 +116,7 @@ class NearbyPlaces extends React.Component {
                                 </View>
 
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.getNearbyPlaces('DepositMoney')} style={[styles.button, { backgroundColor: '#9f50b0' }]}>
+                            <TouchableOpacity onPress={() => { Speech.speak(i18n.t("Deposit Money")); this.getNearbyPlaces('DepositMoney')}} style={[styles.button, { backgroundColor: '#9f50b0' }]}>
                               <View style={{ flexDirection: 'row' }}>
                                   <Image style={{
                                       marginLeft: '3%',
@@ -127,7 +127,7 @@ class NearbyPlaces extends React.Component {
                                   }} source={require('../assets/nearbyBanks.png')} />
                                   <View style = {styles.buttonTextContainer}>
                                     <Text style={styles.buttonText}></Text>
-                                    <Text style={styles.buttonText}>Deposit Money</Text>
+                                    <Text style={styles.buttonText}>{i18n.t("Deposit Money")}</Text>
                                     <Text style={styles.buttonText}></Text>
                                   </View>
                               </View>
