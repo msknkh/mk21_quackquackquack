@@ -16,5 +16,9 @@
     "Km":"किमी",
     "Open Settings":"केंद्र",
     "Enable Location Services": "लोकेशन सेवाओं को सक्षम करें",
-    "You denied your location. You can fix this by visiting your settings and enabling location permissions for this app.":"आप अपने स्थान से इनकार किया. आप यह तय कर सकते हैं पर जाकर अपनी सेटिंग्स और सक्रिय करने के लिए स्थान अनुमतियां इस app है । "
+    "You denied your location. You can fix this by visiting your settings and enabling location permissions for this app.":"आप अपने स्थान से इनकार किया. आप यह तय कर सकते हैं पर जाकर अपनी सेटिंग्स और सक्रिय करने के लिए स्थान अनुमतियां इस app है । ",
+    "You'll now get a list for the Banks near you": "अब आप अपने पास के बैंकों के लिए एक सूची प्राप्त करेंगे",
+    "You'll now get a list for the ATMs near you": "अब आप अपने पास के ATM के लिए एक सूची प्राप्त करेंगे",
+    "Withdraw Money": "पैसा निकालना",
+    "Deposit Money": "पैसा जमा"
 }

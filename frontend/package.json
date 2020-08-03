@@ -20,9 +20,12 @@
     "expo-blur": "~8.1.2",
     "expo-font": "~8.2.1",
     "expo-intent-launcher": "~8.2.1",
+    "expo-localization": "~8.2.1",
     "expo-location": "~8.2.1",
     "expo-permissions": "~9.0.1",
+    "expo-speech": "~8.2.1",
     "expo-status-bar": "^1.0.2",
+    "expo-web-browser": "~8.3.1",
     "i18n-js": "^3.7.1",
     "native-base": "^2.13.13",
     "react": "~16.11.0",
@@ -39,11 +42,8 @@
     "react-native-tts": "^3.2.0",
     "react-native-web": "~0.11.7",
     "react-native-webview": "^10.3.3",
-    "expo-speech": "~8.2.1",
     "react-native-youtube-iframe": "^1.2.4",
-    "sort-by": "^1.2.0",
-    "expo-localization": "~8.2.1",
-    "expo-web-browser": "~8.3.1"
+    "sort-by": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
